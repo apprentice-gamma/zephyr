@@ -10,19 +10,19 @@
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				{{1+1}}
+				ANGULAR IS RUNNING? {{1+1}}
 			</div>
 			<div class="col-md-12 column">
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal" role="form" ng-controller = "flightEntry as vmFlightEntry">
 					<div class="form-group">
 						 <label for="inputEmail3" class="col-sm-2 control-label">Flight No.</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="inputFlight" />
+							<input type="text" class="form-control" id="inputFlight" ng-model="vmFlightEntry.FlightFactory.flight"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							 <button type="submit" class="btn btn-default">Submit</button>
+							 <button type="submit" class="btn btn-default" ng-click="vmFlightEntry.submit()">Submit</button>
 						</div>
 					</div>
 				</form>
@@ -35,5 +35,7 @@
 	<script	type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular-cookies.js"></script>
 	<script	type="text/javascript" src="./app/modules/ui-bootstrap-0.12.1.js"></script>
 	<script	type="text/javascript" src="./app/zephyr.js"></script>
+	<script	type="text/javascript" src="./app/controllers/flightEntry.controller.js"></script>
+	<script	type="text/javascript" src="./app/factories/flight.factory.js"></script>
 </body>
 </html>

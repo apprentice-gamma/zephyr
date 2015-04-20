@@ -3,8 +3,13 @@
 		.module('zephyr')
 		.controller('flightEntry', flightEntry);
 
-	function flightEntry() {
+	function flightEntry(FlightFactory) {
 		var vm = this;
+		vm.submit = submit;
+		vm.FlightFactory = FlightFactory;
 		
+		function submit() {
+			alert(FlightFactory.flight);
+		}
 	}
 })();
