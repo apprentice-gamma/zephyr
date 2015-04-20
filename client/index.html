@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Zephyr</title>
@@ -5,9 +6,12 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
 </head>
-<body>
+<body ng-app="zephyr">
 	<div class="container">
 		<div class="row clearfix">
+			<div class="col-md-12 column">
+				{{1+1}}
+			</div>
 			<div class="col-md-12 column">
 				<form class="form-horizontal" role="form">
 					<div class="form-group">
@@ -40,5 +44,9 @@
 	</div>
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular.min.js"></script>
+	<script	type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular-route.js"></script>
+	<script	type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular-cookies.js"></script>
+	<script	type="text/javascript" src="./app/modules/ui-bootstrap-0.12.1.js"></script>
+	<script	type="text/javascript" src="./app/zephyr.js"></script>
 </body>
 </html>
