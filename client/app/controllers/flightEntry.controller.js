@@ -3,7 +3,7 @@
 		.module('zephyr')
 		.controller('flightEntry', flightEntry);
 
-	function flightEntry(FlightFactory) {
+	function flightEntry(FlightFactory, SpeechService) {
 		var vm = this;
 		vm.submit = submit;
 		vm.FlightFactory = FlightFactory;
@@ -11,7 +11,7 @@
 		function submit() {
 			console.log(FlightFactory.flight);
 			parseFlightNumber(FlightFactory.flight);
-			alert(FlightFactory.flight);
+			SpeechService.speak(FlightFactory.flight);
 		}
 
 		function parseFlightNumber(flightNumber) {
