@@ -9,7 +9,6 @@
 		vm.FlightFactory = FlightFactory;
 		
 		function submit() {
-			console.log(FlightFactory.flight);
 			parseFlightNumber(FlightFactory.flight);
 			SpeechService.speak(FlightFactory.flight);
 		}

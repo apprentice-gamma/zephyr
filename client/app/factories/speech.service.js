@@ -8,7 +8,7 @@
         ////////////////
 
         function speak(message) {
-        	console.log('IM A SERVICE');
+        	console.log("I'M A SPEECH SERVICE");
         	var msg = new SpeechSynthesisUtterance(message);
 			window.speechSynthesis.speak(msg);
         }
