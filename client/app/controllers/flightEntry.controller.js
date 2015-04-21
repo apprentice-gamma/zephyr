@@ -2,14 +2,17 @@
     angular
         .module('zephyr')
         .controller('flightEntry', flightEntry);
-
     function flightEntry(FlightFactory, SpeechService, DirectionFactory, $state, $geolocation, $modalStack) {
         var vm = this;
         vm.FlightFactory = FlightFactory;
         vm.trackFlight = trackFlight;
+        vm.SpeechService = SpeechService;
+        vm.listenFlight = listenFlight;
         vm.airport = "";
 
         function trackFlight(direction, controller) {
+            SpeechService.speak(FlightFactory.flight);
+
             if (FlightFactory.flight) {
                 FlightFactory.getFlightData(direction).then(function() {
                     $geolocation.getCurrentPosition({
@@ -44,5 +47,13 @@
             }
 
         }
-    }
+		
+		function listenFlight() {
+			var test = SpeechService.listen();
+			$scope.on('SPEECH_RECOGNIZED', function(text) {
+				console.log('BANANA', text);
+			});
+			console.log(test);
+		}
+	}
 })();
