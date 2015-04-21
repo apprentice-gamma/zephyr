@@ -12,7 +12,8 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-success btn-lg" ng-click="vmFlightEntry.submit()">Submit</button> 
+					<button type="submit" class="btn btn-success btn-lg" ng-click="vmFlightEntry.FlightFactory.getFlightData('dep')">Departure</button> 
+					<button type="submit" class="btn btn-success btn-lg" ng-click="vmFlightEntry.FlightFactory.getFlightData('arr')">Arrival</button>
 					<h5 class="text-center"><a ui-sref="search">Don't know your Flight?</a></h5>
 				</div>
 			</div>
