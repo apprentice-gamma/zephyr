@@ -6,6 +6,7 @@
 	function FlightFactory() {
 		var factory = {};
 			factory.flight = undefined;
+			factory.flightComponents = {};
 		return factory;
 	}
 })();
