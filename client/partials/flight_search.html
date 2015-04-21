@@ -1,1 +1,38 @@
-SEARCH!
+<div class="col-md-12 column" ng-controller="flightSearch as vmSearch">
+	<!-- DATE PICKER -->
+	<div class="row">
+		<div class="col-md-6">
+			<p class="input-group">
+				<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="vmSearch.dt" is-open="vmSearch.opened" min-date="vmSearch.minDate" max-date="'2015-06-22'" datepicker-options="vmSearch.dateOptions" date-disabled="vmSearch.disabled(date, mode)" ng-required="true" close-text="Close" />
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="vmSearch.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<label>Format:</label> <select class="form-control" ng-model="vmSearch.format" ng-options="f for f in vmSearch.formats"><option></option></select>
+		</div>
+		<button type="button" class="btn btn-sm btn-info" ng-click="vmSearch.today()">Today</button>
+		<button type="button" class="btn btn-sm btn-default" ng-click="vmSearch.dt = '2009-08-24'">2009-08-24</button>
+		<button type="button" class="btn btn-sm btn-danger" ng-click="vmSearch.clear()">Clear</button>
+		<button type="button" class="btn btn-sm btn-default" ng-click="vmSearch.toggleMin()" tooltip="After today restriction">Min date</button>
+	</div>
+	<hr />
+
+	<!-- SEARCH FORM -->
+	<div class="row">
+		<form role="form">
+			<div class="form-group">
+				<label for="departureAirport">Departure Airport</label>
+				<input type="text" class="form-control input-lg" id="departureAirport" />
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Arrival Airport</label>
+				<input type="text" class="form-control input-lg" id="exampleInputPassword1" />
+			</div>
+			 <button type="submit" class="btn btn-success btn-lg btn-block">Search</button>
+		</form>
+	</div>
+</div>

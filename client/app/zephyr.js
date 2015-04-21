@@ -12,17 +12,17 @@ function Configuration($stateProvider, $urlRouterProvider) {
             templateUrl: "../partials/flight_search.html"
           
         })
-        .state('search.list', {
-            url: "/search.list",
-            templateUrl: "../partials/flight_search.list.html"
+        .state('results', {
+            url: "/search/:airport/",
+            templateUrl: "../partials/flight_search.results.html"
         })
         .state('airport', {
             url: "/airport",
             templateUrl: "../partials/airport.html"
             
         })
-        .state('time', {
-            url: "/time", 
-            templateUrl: "../partials/time.html"
+        .state('track', {
+            url: "/track", 
+            templateUrl: "../partials/flight_tracker.html"
         });
 }
