@@ -21,8 +21,8 @@ function Configuration($stateProvider, $urlRouterProvider) {
             templateUrl: "../partials/airport.html"
             
         })
-        .state('time', {
-            url: "/time", 
-            templateUrl: "../partials/flight_timer.html"
+        .state('track', {
+            url: "/track", 
+            templateUrl: "../partials/flight_tracker.html"
         });
 }
