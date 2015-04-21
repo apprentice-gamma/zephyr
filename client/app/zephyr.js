@@ -23,6 +23,6 @@ function Configuration($stateProvider, $urlRouterProvider) {
         })
         .state('time', {
             url: "/time", 
-            templateUrl: "../partials/time.html"
+            templateUrl: "../partials/flight_timer.html"
         });
 }
