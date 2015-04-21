@@ -1,7 +1,7 @@
 (function(){
   angular
     .module('zephyr')
-    .factory('AirportFactory', Airport Factory);
+    .factory('AirportFactory', AirportFactory);
 
   function AirportFactory() {
     var factory = {};
