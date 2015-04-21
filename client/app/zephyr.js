@@ -12,9 +12,9 @@ function Configuration($stateProvider, $urlRouterProvider) {
             templateUrl: "../partials/flight_search.html"
           
         })
-        .state('search.list', {
-            url: "/search.list",
-            templateUrl: "../partials/flight_search.list.html"
+        .state('results', {
+            url: "/search/:airport/",
+            templateUrl: "../partials/flight_search.results.html"
         })
         .state('airport', {
             url: "/airport",
@@ -23,6 +23,6 @@ function Configuration($stateProvider, $urlRouterProvider) {
         })
         .state('time', {
             url: "/time", 
-            templateUrl: "../partials/time.html"
+            templateUrl: "../partials/flight_timer.html"
         });
 }
