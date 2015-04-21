@@ -7,8 +7,5 @@
 		var vm = this;
 		vm.FlightFactory = FlightFactory;
 		vm.ActivityFactory = ActivityFactory;
-		
-		vm.currentPage = 1;
-		vm.itemsPerPage = 1;
 	}
 })();
