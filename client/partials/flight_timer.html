@@ -12,7 +12,7 @@
         <a ng-href="" class="list-group-item" ng-repeat="activity in vmTimer.ActivityFactory.activities | limitTo:3:((vmTimer.currentPage - 1) * 3)">
         	{{activity}}
         </a>
-        <pagination total-items="vmTimer.ActivityFactory.totalActivities" ng-model="vmTimer.currentPage" items-per-page="vmTimer.itemsPerPage" class="pagination-sm" boundary-links="true"></pagination>
+        <pager total-items="vmTimer.ActivityFactory.totalActivities" items-per-page="vmTimer.itemsPerPage" ng-model="vmTimer.currentPage"></pager>
       </div>
 	</div>
 
