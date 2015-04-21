@@ -1,9 +1,9 @@
 (function(){
 	angular
 		.module('zephyr')
-		.controller('flightTimer', flightTimer);
+		.controller('flightTracker', flightTracker);
 
-	function flightTimer(FlightFactory, ActivityFactory) {
+	function flightTracker(FlightFactory, ActivityFactory) {
 		var vm = this;
 		vm.FlightFactory = FlightFactory;
 		vm.ActivityFactory = ActivityFactory;
