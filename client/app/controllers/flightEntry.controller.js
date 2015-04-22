@@ -9,8 +9,9 @@
 		vm.trackFlight = trackFlight;
 
 		function trackFlight(direction) {
-			FlightFactory.getFlightData(direction);
-			$state.go('track');
+			FlightFactory.getFlightData(direction).then(function(){
+				$state.go('track');	
+			});			
 		}
 	}
 	

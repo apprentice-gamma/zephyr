@@ -3,7 +3,7 @@
 		.module('zephyr')
 		.factory('FlightFactory', FlightFactory);
 
-	function FlightFactory($http) {
+	function FlightFactory($http, $q) {
 		var factory = {};
 		factory.flight = "dl2024";
 		factory.today = "2015/4/22";
@@ -23,9 +23,11 @@
       parseFlightNumber(factory.flight);
       var url = buildUrl(direction);
       console.log(url);
+      var deferred = $q.defer();
       
       $http.jsonp(url).
         success(function(data, status, headers, config) {
+        	deferred.resolve(data);
         	factory.flightStatus = data.flightStatuses[0];
         	factory.flightTimes = data.flightStatuses[0].operationalTimes;
             factory.connectionTime = getConnectionTime(direction);
@@ -33,18 +35,32 @@
     	})
     	.error(function() {
     		console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
+    		deferred.reject('ERROR DEFERRING');
     	});
+
+    	return deferred.promise;
     } 
 
     function buildUrl(direction) {
 		var url = factory.apibase;
     	url += factory.flightComponents.airline + '/' + factory.flightComponents.number + '/';
     	url += direction + '/';
-    	url += factory.today;
+    	url += getTodayAsString();
     	url += factory.suffix;  
 
     	return url;
     }
+
+    function getTodayAsString() {
+	   var d = new Date();
+	   var string = "";
+	   
+	   string = d.getFullYear();
+	   string += "/" + (d.getMonth() + 1);
+	   string += "/" + d.getDate();
+	   console.log(string);
+	   return string;
+	}
 
     function getConnectionTime(direction){
     	console.log('direction in getConTime', direction);
