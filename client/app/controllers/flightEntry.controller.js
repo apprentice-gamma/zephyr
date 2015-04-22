@@ -3,25 +3,15 @@
 		.module('zephyr')
 		.controller('flightEntry', flightEntry);
 
-	function flightEntry(FlightFactory, SpeechService) {
+	function flightEntry(FlightFactory, SpeechService, $state) {
 		var vm = this;
-		vm.submit = submit;
 		vm.FlightFactory = FlightFactory;
-		
-		function submit() {
-			parseFlightNumber(FlightFactory.flight);
-			SpeechService.speak(FlightFactory.flight);
-		}
+		vm.trackFlight = trackFlight;
 
-		function parseFlightNumber(flightNumber) {
-			var match = /\d/.exec(flightNumber);
-			var flightComponents = {};
-			if (match) {
-				flightComponents.airline = flightNumber.slice(0, match.index).trim();
-				flightComponents.number = flightNumber.slice(match.index, flightNumber.length).trim();
-				alert(flightComponents.airline + "-" + flightComponents.number);
-		 	}
-		 	return flightComponents;
+		function trackFlight(direction) {
+			FlightFactory.getFlightData(direction);
+			$state.go('track');
 		}
 	}
+	
 })();
