@@ -28,6 +28,7 @@
     	url += direction + '/';
     	url += factory.today;
     	url += factory.suffix;
+      console.log(url);
 
       $http.get(url).
         success(function(data, status, headers, config) {
@@ -40,11 +41,11 @@
 
 		      console.log(data);
 
-          //     if(data.owned_households !== undefined)                
+          // if(data.owned_households !== undefined)                
           //         factory.flight = data.owned_households;
-          //     else
+          // else
           //         factory.flight = data[0].owned_households;
-          // }).
+          // 
           // error(function(data, status, headers, config) {
           //     console.log("There was an error retrieving JSON data");// log error
           // });
