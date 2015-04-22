@@ -5,14 +5,15 @@
 
 	function FlightFactory($http) {
 		var factory = {};
-		factory.flight = undefined;
+		factory.flight = "dl2024";
 		factory.flightComponents = {};
+		factory.flightStatus = {};
+        factory.flightTimes = {};
 		factory.today = "2015/4/21";
-		// factory.apiurl = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/DAL/2128/DEP/2015/4/21?appId=588e049b&appKey=f9e4c706444bfc87888b78ddb64f00c8&utc=false";
 		factory.apibase = "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/";
 		factory.suffix = "?callback=JSON_CALLBACK&appId=588e049b&appKey=f9e4c706444bfc87888b78ddb64f00c8&utc=false";
 
-		//methods
+	//methods
     factory.getFlightData = getFlightData;
 
     //method declarations
@@ -26,8 +27,8 @@
         success(function(data, status, headers, config) {
         	factory.flightStatus = data.flightStatuses[0];
         	factory.flightTimes = data.flightStatuses[0].operationalTimes;
-            findAirports(data.appendix.airports);
-        	console.log(data);
+            // findAirports(data.appendix.airports);
+        	console.log(factory.flightTimes);
     	})
     	.error(function() {
     		console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
