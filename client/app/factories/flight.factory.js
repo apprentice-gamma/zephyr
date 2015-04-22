@@ -5,10 +5,6 @@
 
 	function FlightFactory($http) {
 		var factory = {};
-		factory.depAirportLoc = {};
-		factory.arrAirportLoc = {};
-		factory.schlGateDep = undefined;
-		factory.schlGateArr = undefined;
 		factory.flight = undefined;
 		factory.flightComponents = {};
 		factory.today = "2015/4/21";
@@ -28,10 +24,13 @@
       
       $http.jsonp(url).
         success(function(data, status, headers, config) {
-        	findAirports(data.appendix.airports);
         	factory.flightStatus = data.flightStatuses[0];
         	factory.flightTimes = data.flightStatuses[0].operationalTimes;
+            findAirports(data.appendix.airports);
         	console.log(data);
+    	})
+    	.error(function() {
+    		console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
     	});
     } 
 
