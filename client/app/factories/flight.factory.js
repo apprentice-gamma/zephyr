@@ -3,7 +3,7 @@
 		.module('zephyr')
 		.factory('FlightFactory', FlightFactory);
 
-	function FlightFactory($https) {
+	function FlightFactory($http) {
 		var factory = {};
 		factory.depAirportLoc = {};
 		factory.arrAirportLoc = {};
