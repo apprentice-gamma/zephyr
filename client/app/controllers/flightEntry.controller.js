@@ -7,10 +7,16 @@
 		var vm = this;
 		vm.FlightFactory = FlightFactory;
 		vm.trackFlight = trackFlight;
+		vm.airport = "";
 
 		function trackFlight(direction) {
-			FlightFactory.getFlightData(direction);
-			$state.go('track');
+			if (FlightFactory.flight){
+				FlightFactory.getFlightData(direction);
+				$state.go('track');
+			} else {
+				alert('no flight entered');
+				FlightFactory.findFlights(vm.airport);
+			}
 		}
 	}
 	
