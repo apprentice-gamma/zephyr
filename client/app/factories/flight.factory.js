@@ -23,27 +23,27 @@
 
     function getFlightData(direction) {
       parseFlightNumber(factory.flight);
-    	var url = factory.apibase;
-    	url += factory.flightComponents.airline + '/' + factory.flightComponents.number + '/';
-    	url += direction + '/';
-    	url += factory.today;
-    	url += factory.suffix;
+      var url = buildUrl(direction);
       console.log(url);
+      
       $http.jsonp(url).
         success(function(data, status, headers, config) {
         	findAirports(data.appendix.airports);
         	factory.flightStatus = data.flightStatuses[0];
         	factory.flightTimes = data.flightStatuses[0].operationalTimes;
-        	
-			// factory.depAirportLoc.lat = data.departureAirport.latitude;
-			// factory.depAirportLoc.lon = data.departureAirport.longitude;
-			// factory.arrAirportLoc.lat = data.arrivalAirport.latitude;
-			// factory.arrAirportLoc.lon = data.arrivalAirport.longitude;
-			// factory.schlGateDep = data.operationalTimes.scheduledGateDeparture.dateUtc;
-			// factory.schlGateArr = data.operationalTimes.estimatedGateArrival.dateUtc;
-		      console.log(data);
-    		});
+        	console.log(data);
+    	});
     } 
+
+    function buildUrl(direction) {
+		var url = factory.apibase;
+    	url += factory.flightComponents.airline + '/' + factory.flightComponents.number + '/';
+    	url += direction + '/';
+    	url += factory.today;
+    	url += factory.suffix;  
+
+    	return url;
+    }
 
     function findAirports(airports) {
     	var fsDep = factory.flightStatuses.departureAirportFsCode;
@@ -51,9 +51,9 @@
 
     	for (var i = 0; i < airports.length; i++) {
     		if(airports[i].fs === fsDep) {
-    			factory.departureAirport = airports[i]
+    			factory.departureAirport = airports[i];
     		} else if(airports[i].fs === fsArr) {
-    			factory.arrivalAirport = airports[i]
+    			factory.arrivalAirport = airports[i];
     		}
     	}
     }
