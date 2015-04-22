@@ -1,4 +1,4 @@
-angular.module('zephyr', ['ngRoute', 'ngCookies', 'ui.bootstrap', 'ui.router']);
+angular.module('zephyr', ['ngRoute', 'ngCookies', 'ui.bootstrap', 'ui.router', 'timer']);
 angular.module('zephyr').config(Configuration);
 
 function Configuration($stateProvider, $urlRouterProvider) {

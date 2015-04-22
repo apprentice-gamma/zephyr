@@ -3,16 +3,18 @@
 		.module('zephyr')
 		.factory('FlightFactory', FlightFactory);
 
-	function FlightFactory($http) {
+	function FlightFactory($http, $q) {
 		var factory = {};
-		factory.flight = undefined;
+		factory.flight = "dl2024";
+		factory.today = "2015/4/22";
 		factory.flightComponents = {};
-		factory.today = "2015/4/21";
-		// factory.apiurl = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/DAL/2128/DEP/2015/4/21?appId=588e049b&appKey=f9e4c706444bfc87888b78ddb64f00c8&utc=false";
+		factory.flightStatus = {};
+        factory.flightTimes = {};
+        factory.connectionTime = 0;
 		factory.apibase = "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/";
 		factory.suffix = "?callback=JSON_CALLBACK&appId=588e049b&appKey=f9e4c706444bfc87888b78ddb64f00c8&utc=false";
 
-		//methods
+	//methods
     factory.getFlightData = getFlightData;
 
     //method declarations
@@ -21,27 +23,56 @@
       parseFlightNumber(factory.flight);
       var url = buildUrl(direction);
       console.log(url);
+      var deferred = $q.defer();
       
       $http.jsonp(url).
         success(function(data, status, headers, config) {
+        	deferred.resolve(data);
         	factory.flightStatus = data.flightStatuses[0];
         	factory.flightTimes = data.flightStatuses[0].operationalTimes;
-            findAirports(data.appendix.airports);
-        	console.log(data);
+            factory.connectionTime = getConnectionTime(direction);
+        	console.log('factory.connectionTime', factory.connectionTime);
     	})
     	.error(function() {
     		console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
+    		deferred.reject('ERROR DEFERRING');
     	});
+
+    	return deferred.promise;
     } 
 
     function buildUrl(direction) {
 		var url = factory.apibase;
     	url += factory.flightComponents.airline + '/' + factory.flightComponents.number + '/';
     	url += direction + '/';
-    	url += factory.today;
+    	url += getTodayAsString();
     	url += factory.suffix;  
 
     	return url;
+    }
+
+    function getTodayAsString() {
+	   var d = new Date();
+	   var string = "";
+	   
+	   string = d.getFullYear();
+	   string += "/" + (d.getMonth() + 1);
+	   string += "/" + d.getDate();
+	   console.log(string);
+	   return string;
+	}
+
+    function getConnectionTime(direction){
+    	console.log('direction in getConTime', direction);
+    	console.log('factory.flightTimes -------', factory.flightTimes);
+    	if (direction === "dep") {
+    		// factory.connectionTime = factory.flightTimes.estematedGateDeparture;
+    		return factory.flightTimes.scheduledGateDeparture.dateUtc;
+    	} else if (direction === "arr") {
+    		// factory.connectionTime = factory.flightTimes.flightPlanPlannedArrival;
+    		return factory.flightTimes.flightPlanPlannedArrival.dateUtc;
+    	};
+
     }
 
     function findAirports(airports) {
