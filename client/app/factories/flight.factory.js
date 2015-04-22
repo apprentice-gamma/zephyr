@@ -20,6 +20,15 @@
             factory.findFlights = findFlights;
 
             //method declarations
+            function getTodayAsString() {
+                var d = new Date();
+                var string = "";
+                string = d.getFullYear();
+                string += "/" d.getMonth();
+                string += "/" d.getDate();
+                console.log (string);
+                return string;
+            }
 
             function findFlights(airport) {
 
@@ -32,9 +41,10 @@
               
               $http.jsonp(url).
                 success(function(data, status, headers, config) {
-                	factory.flightStatus = data.flightStatuses[0];
+                    console.log(data.flightStatuses[0]);
+                	factory.flightStatus = data.flightStatuses;
                 	factory.flightTimes = data.flightStatuses[0].operationalTimes;
-                    findAirports(data.appendix.airports);
+                    //findAirports(data.appendix.airports);
                 	console.log(data);
             	})
             	.error(function() {
