@@ -3,13 +3,15 @@
 		.module('zephyr')
 		.controller('flightTracker', flightTracker);
 
-	function flightTracker(FlightFactory, ActivityFactory) {
+	function flightTracker(FlightFactory, ActivityFactory, $scope) {
 		var vm = this;
 		vm.FlightFactory = FlightFactory;
 		vm.ActivityFactory = ActivityFactory;
+		vm.countdown = 0;
 		vm.today = new Date();
 		vm.trackUTC = '2015-04-22T23:00:00.000Z';
-		var countdown = calculateCountdown(vm.trackUTC);
+		$scope.$broadcast('timer-start');
+		var banana = calculateCountdown(vm.trackUTC);
 
 		function calculateCountdown(input) {
 			var d = new Date(input);
