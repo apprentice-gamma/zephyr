@@ -1,4 +1,11 @@
-angular.module('zephyr', ['ngRoute', 'ngCookies', 'ui.bootstrap', 'ui.router']);
+angular.module('zephyr', ['ngRoute', 'ngCookies', 'ui.bootstrap', 'ui.router', 'uiGmapgoogle-maps', 'ngGeolocation']);
+angular.module('zephyr').config(function(uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+        //    key: 'your api key',
+        v: '3.17',
+        libraries: 'weather,geometry,visualization'
+    });
+});
 angular.module('zephyr').config(Configuration);
 
 function Configuration($stateProvider, $urlRouterProvider) {
