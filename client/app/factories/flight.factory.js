@@ -22,8 +22,9 @@
     //method declarations
 
     function getFlightData(direction) {
+      parseFlightNumber(factory.flight);
     	var url = factory.apibase;
-    	url += flightComponents.airline + '/' + flightComponents.number + '/';
+    	url += factory.flightComponents.airline + '/' + factory.flightComponents.number + '/';
     	url += direction + '/';
     	url += factory.today;
     	url += factory.suffix;
@@ -48,7 +49,16 @@
           //     console.log("There was an error retrieving JSON data");// log error
           // });
     		});
+    } 
+
+    function parseFlightNumber(flightNumber) {
+      var match = /\d/.exec(flightNumber);
+      if (match) {
+        factory.flightComponents.airline = flightNumber.slice(0, match.index).trim();
+        factory.flightComponents.number = flightNumber.slice(match.index, flightNumber.length).trim();
+      }
+    }
 
 		return factory;
-	}
+  }
 })();
