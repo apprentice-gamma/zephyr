@@ -49,11 +49,7 @@
         }
 		
 		function listenFlight() {
-			var test = SpeechService.listen();
-			$scope.on('SPEECH_RECOGNIZED', function(text) {
-				console.log('BANANA', text);
-			});
-			console.log(test);
+			SpeechService.listen(vm, 'test');
 		}
 	}
 })();

@@ -11,7 +11,7 @@
 				</div>
 				<label for="inputFlight" class="col-sm-2 control-label">Flight No.</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control input-lg" id="inputFlight" ng-model="vmFlightEntry.FlightFactory.flight" x-webkit-speech/>
+					<input type="text" class="form-control input-lg" id="inputFlight" ng-model="vmFlightEntry.FlightFactory.flight"/>
 				</div>
 				<label for="inputFlight" class="col-sm-2 glyphicon glyphicon-bullhorn" ng-click = "vmFlightEntry.listenFlight()">
 			</div>
@@ -19,7 +19,6 @@
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-success btn-lg" ng-click="vmFlightEntry.trackFlight('dep', vmMain)">Departure</button> 
 					<button type="submit" class="btn btn-success btn-lg" ng-click="vmFlightEntry.trackFlight('arr', vmMain)">Arrival</button>
-					<h5 class="text-center"><a ui-sref="search">Don't know your Flight?</a></h5>
 				</div>
 			</div>
 		</form>

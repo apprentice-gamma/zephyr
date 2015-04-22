@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 (function() {
     angular
         .module('zephyr')
@@ -167,4 +168,18 @@
 
         return factory;
     }
+=======
+(function(){
+	angular
+		.module('zephyr')
+		.factory('FlightFactory', FlightFactory);
+
+	function FlightFactory() {
+		var factory = {};
+			factory.flight = undefined;
+			factory.flightComponents = {};
+			factory.spoken = "BANANA";
+		return factory;
+	}
+>>>>>>> speech service
 })();
