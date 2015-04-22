@@ -8,9 +8,12 @@
     		factory.flight = undefined;
     		factory.flightComponents = {};
     		factory.today = "2015/4/21";
-    		// factory.apiurl = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/DAL/2128/DEP/2015/4/21?appId=588e049b&appKey=f9e4c706444bfc87888b78ddb64f00c8&utc=false";
-    		factory.apibase = "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/";
+    		
+            factory.flightBase = "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/";
     		factory.suffix = "?callback=JSON_CALLBACK&appId=588e049b&appKey=f9e4c706444bfc87888b78ddb64f00c8&utc=false";
+            
+            factory.airportBase = "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/";
+            factory.airportSuffix = "&numHours=5&maxFlights=25";
 
         		//methods
             factory.getFlightData = getFlightData;
@@ -39,10 +42,20 @@
             	});
             }
 
-            
+            function buildAirport(airport, direction) {
+                var url = factory.airportBase;
+                url += airport + '/';
+                url += direction + '/';
+                url += factory.today;
+                url += factory.airportSuffix;  
+
+                consol.log('AIRPORT SEARCH URL:' + url);
+
+                return url;
+            }
 
             function buildFlight(direction) {
-        		var url = factory.apibase;
+        		var url = factory.flightBase;
             	url += factory.flightComponents.airline + '/' + factory.flightComponents.number + '/';
             	url += direction + '/';
             	url += factory.today;
