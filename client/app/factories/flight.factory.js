@@ -6,10 +6,11 @@
 	function FlightFactory($http) {
 		var factory = {};
 		factory.flight = "dl2024";
+		factory.today = "2015/4/22";
 		factory.flightComponents = {};
 		factory.flightStatus = {};
         factory.flightTimes = {};
-		factory.today = "2015/4/21";
+        factory.connectionTime = 0;
 		factory.apibase = "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/";
 		factory.suffix = "?callback=JSON_CALLBACK&appId=588e049b&appKey=f9e4c706444bfc87888b78ddb64f00c8&utc=false";
 
@@ -27,8 +28,8 @@
         success(function(data, status, headers, config) {
         	factory.flightStatus = data.flightStatuses[0];
         	factory.flightTimes = data.flightStatuses[0].operationalTimes;
-            // findAirports(data.appendix.airports);
-        	console.log(factory.flightTimes);
+            factory.connectionTime = getConnectionTime(direction);
+        	console.log('factory.connectionTime', factory.connectionTime);
     	})
     	.error(function() {
     		console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
@@ -43,6 +44,19 @@
     	url += factory.suffix;  
 
     	return url;
+    }
+
+    function getConnectionTime(direction){
+    	console.log('direction in getConTime', direction);
+    	console.log('factory.flightTimes -------', factory.flightTimes);
+    	if (direction === "dep") {
+    		// factory.connectionTime = factory.flightTimes.estematedGateDeparture;
+    		return factory.flightTimes.scheduledGateDeparture.dateUtc;
+    	} else if (direction === "arr") {
+    		// factory.connectionTime = factory.flightTimes.flightPlanPlannedArrival;
+    		return factory.flightTimes.flightPlanPlannedArrival.dateUtc;
+    	};
+
     }
 
     function findAirports(airports) {

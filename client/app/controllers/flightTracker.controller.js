@@ -7,9 +7,8 @@
 		var vm = this;
 		vm.FlightFactory = FlightFactory;
 		vm.ActivityFactory = ActivityFactory;
-		vm.today = new Date();
-		vm.trackUTC = '2015-04-22T23:00:00.000Z';		
-		vm.countdown = calculateCountdown(vm.trackUTC);
+		vm.today = new Date();	
+		vm.countdown = calculateCountdown(FlightFactory.connectionTime);
 		console.log("it's the final countdown",vm.countdown)
 
 		function calculateCountdown(input) {
