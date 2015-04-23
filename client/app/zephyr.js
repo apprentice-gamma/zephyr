@@ -8,8 +8,8 @@ function Configuration($stateProvider, $urlRouterProvider) {
             templateUrl: "../partials/flight_entry.html"
         })
         .state('results', {
-            url: "/search/:airport/",
-            templateUrl: "../partials/flight_search.results.html"
+            url: "/search",
+            templateUrl: "../partials/flight_search.html"
         })
         .state('track', {
             url: "/track", 

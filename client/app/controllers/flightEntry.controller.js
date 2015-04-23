@@ -16,7 +16,9 @@
 				});		
 			} else {
 				alert('no flight entered');
-				FlightFactory.findFlights(vm.airport, direction);
+				FlightFactory.findFlights(vm.airport, direction).then(function(){
+					$state.go('results');
+				});
 			}
 		}
 	}

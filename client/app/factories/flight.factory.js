@@ -10,6 +10,7 @@
             factory.flightStatus = {};
             factory.flightTimes = {};
             factory.connectionTime = 0;
+            factory.flightsAtAirport = [];
     		
             factory.flightBase = "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/";
     		factory.suffix = "?callback=JSON_CALLBACK&appId=588e049b&appKey=f9e4c706444bfc87888b78ddb64f00c8&utc=false";
@@ -31,6 +32,7 @@
                 success(function(data, status, headers, config) {
                     deferred.resolve(data);
                     console.log(data);
+                    factory.flightsAtAirport = data.flightStatuses;
                     // factory.flightStatus = data.flightStatuses[0];
                     // factory.flightTimes = data.flightStatuses[0].operationalTimes;
                     // factory.connectionTime = getConnectionTime(direction);
@@ -72,21 +74,24 @@
                 var url = factory.airportBase;
                 url += airport + '/';
                 url += direction + '/';
-                url += getTodayAsString();
-                url += factory.airportSuffix;  
+                url += getTodayAsString(true);
                 url += factory.suffix;
+                url += factory.airportSuffix;  
                 console.log('AIRPORT SEARCH URL:' + url);
 
                 return url;
             }
 
-            function getTodayAsString() {
+            function getTodayAsString(needHour) {
         	   var d = new Date();
         	   var string = "";
         	   
         	   string = d.getFullYear();
         	   string += "/" + (d.getMonth() + 1);
         	   string += "/" + d.getDate();
+               if (needHour){
+                string += "/" + d.getHours();
+               }
         	   console.log(string);
         	   return string;
         	}
@@ -109,7 +114,7 @@
         		var url = factory.flightBase;
             	url += factory.flightComponents.airline + '/' + factory.flightComponents.number + '/';
             	url += direction + '/';
-            	url += getTodayAsString();
+            	url += getTodayAsString(false);
             	url += factory.suffix;  
 
             	return url;
