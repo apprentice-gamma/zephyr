@@ -15,7 +15,7 @@
 					$state.go('track');	
 				});		
 			} else {
-				alert('no flight entered');
+				// alert('no flight entered');
 				FlightFactory.findFlights(vm.airport, direction).then(function(){
 					$state.go('results');
 				});
