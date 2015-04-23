@@ -47,8 +47,8 @@
     }
 
     function formatTimeAsUTC(input) {
-      var timeUTC = new Date();
-      timeUTC.setUTCMinutes(input);
+      var now = new Date();
+      var timeUTC = new Date(now.getTime() + (input * 60000));
       console.log(timeUTC);
       return timeUTC;
     }
