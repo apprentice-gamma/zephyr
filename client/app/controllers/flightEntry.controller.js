@@ -14,8 +14,9 @@
 				  .then(function(position) {
 				    console.log("MY POSITION:", position);
 				    DirectionFactory.userLocation = position;
-				    $state.go('track');	
-				    //DirectionFactory.getDrivingETAData();
+				    DirectionFactory.getDrivingETAData().then(function() {
+				    	$state.go('track');		
+				    });
 				  });				
 			});			
 		}

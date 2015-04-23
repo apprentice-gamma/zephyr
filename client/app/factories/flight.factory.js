@@ -46,7 +46,7 @@
     	})
     	.error(function() {
     		console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
-    		deferred.reject('ERROR DEFERRING');
+    		deferred.reject('ERROR DEFERRING FLIGHT');
     	});
 
     	return deferred.promise;
