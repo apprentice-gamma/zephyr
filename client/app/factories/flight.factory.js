@@ -19,6 +19,7 @@
     factory.getFlightData = getFlightData;
 
     //method declarations
+    //
 
     function getFlightData(direction) {
       parseFlightNumber(factory.flight);
