@@ -5,7 +5,7 @@
 
   function DirectionFactory($http) {
     var factory = {};
-    factory.apibase = "https://maps.googleapis.com/maps/api/directions/jsonp?origin=";
+    factory.apibase = "https://maps.googleapis.com/maps/api/directions/json?origin=";
     factory.apisuffix = "&mode=driving&key=AIzaSyAd0RUfc4XbIBhZ-cNdViFL2yronVellCc";
 
     factory.userLocation;
@@ -22,9 +22,9 @@
       url = url + "&destination=" + factory.destination;
       url = url + factory.apisuffix
 
-      $http.jsonp(url).
+      $http.get(url).
         success(function(data, status, headers, config) {
-          console.log(data);
+          console.log(data.routes[0].legs[0].duration.text);
       });
     }
 
