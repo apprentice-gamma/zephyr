@@ -15,8 +15,8 @@
 
             factory.destination = "42.2125,-83.3533"; //DELETE THIS LATER
 
-            factory.destLat = "42.2125";
-            factory.destLong = "-83.8533";
+            factory.destLat = "42.216172";
+            factory.destLong = "-83.355384";
 
             factory.drivingData = {};
 
@@ -37,6 +37,8 @@
                     origins: [origin],
                     destinations: [destination],
                     travelMode: google.maps.TravelMode.DRIVING,
+                    durationInTraffic: true,
+                    unitSystem: google.maps.UnitSystem.IMPERIAL,
                   }, callback);
 
                 function callback(response, status) {
@@ -44,30 +46,10 @@
                     var routeData = response.rows[0].elements[0];
                     factory.drivingData.distance = routeData.distance.value;
                     factory.drivingData.duration = routeData.duration.value;
-                    console.log('DRIVING DATA', factory.drivingData);
+                    deferred.resolve(factory.drivingData);
+                    console.log('Driving Data', factory.drivingData);
                 }
-                
-                function distanceCallback(response, status) {
-                    console.log('DISTANCE STATUS' + status);
-                    if (status == google.maps.DistanceMatrixStatus.OK) {
-                        var origins = response.originAddresses;
-                        var destinations = response.destinationAddresses;
 
-                        for (var i = 0; i < origins.length; i++) {
-                            results = response.rows[i].elements;
-                            for (var j = 0; j < results.length; j++) {
-                                //factory.drivingData.element = results[j];
-                                factory.drivingData.distance = results[j].distance.text;
-                                factory.drivingData.duration = results[j].duration.text;
-                                factory.drivingData.from = origins[i];
-                                factory.drivingData.to = destinations[j];
-                            }
-                        }
-                    }
-                    console.log('DRIVING DATA:', factory.drivingData);
-                    console.log(results);
-                    deferred.resolve(results[0]);
-                }
                 return deferred.promise;
             }
 
