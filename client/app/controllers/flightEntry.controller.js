@@ -16,7 +16,7 @@
 				});		
 			} else {
 				alert('no flight entered');
-				FlightFactory.findFlights(vm.airport);
+				FlightFactory.findFlights(vm.airport, direction);
 			}
 		}
 	}
