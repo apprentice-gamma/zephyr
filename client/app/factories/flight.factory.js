@@ -70,6 +70,8 @@
                 factory.flightStatus = data.flightStatuses[0];
                 factory.flightTimes = data.flightStatuses[0].operationalTimes;
                 factory.connectionTime = getConnectionTimeFromFlightData(direction);
+                //factory.flightID = data.flightStatuses[0].flightID; 
+                //tom
                 console.log('factory.connectionTime', factory.connectionTime);
             })
                 .error(function() {
@@ -130,7 +132,8 @@
             } else {
                 factory.connectionTime = flight.operationalTimes.scheduledGateDeparture.dateUtc;
             }
-
+            //Tom
+            //factory.flightID = flight.flightID
         }
 
 
