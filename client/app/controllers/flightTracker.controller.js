@@ -8,6 +8,8 @@
 		vm.FlightFactory = FlightFactory;
 		vm.ActivityFactory = ActivityFactory;
 
+		console.log('Times: ' + FlightFactory.connectionTime + DirectionFactory.drivingETA);
+		console.log('TIME TYPES:' + typeof(FlightFactory.connectionTime) + typeof(DirectionFactory.drivingETA));
 		vm.carCountdown = calculateCountdown(DirectionFactory.drivingETA);
 		vm.flightCountdown = calculateCountdown(FlightFactory.connectionTime);
 

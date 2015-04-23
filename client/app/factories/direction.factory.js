@@ -11,7 +11,7 @@
     factory.userLocation = undefined;
     factory.latitude = undefined;
     factory.longitude = undefined;
-    factory.drivingETA = undefined;
+    factory.drivingETA = 0;
 
     factory.destination = "42.2125,-83.3533";     //DELETE THIS LATER
 
@@ -29,8 +29,10 @@
       $http.get(url).
         success(function(data, status, headers, config) {
           deferred.resolve(data);
-          factory.drivingETA = data.routes[0].legs[0].duration.text;
           console.log(data.routes[0].legs[0].duration.text);
+          factory.drivingETA = ((data.routes[0].legs[0].duration.value )/ 60);
+          factory.drivingETA = formatTimeAsUTC(factory.drivingETA);
+          console.log(factory.drivingETA);
       }).error(function() {
           console.log('ERROR RETRIEVING DRIVING ETA');
           deferred.reject('ERROR DEFERRING DRIVING');
@@ -42,6 +44,13 @@
     function formatUserLocation(userLocation) {
       factory.latitude = String(Math.round(userLocation.coords.latitude*10000)/10000);
       factory.longitude = String(Math.round(userLocation.coords.longitude*10000)/10000);
+    }
+
+    function formatTimeAsUTC(input) {
+      var timeUTC = new Date();
+      timeUTC.setUTCMinutes(input);
+      console.log(timeUTC);
+      return timeUTC;
     }
 
     return factory;
