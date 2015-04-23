@@ -1,22 +1,26 @@
-(function(){
-  angular
-    .module('zephyr')
-    .controller('mainController', mainController);
+(function() {
+    angular
+        .module('zephyr')
+        .controller('mainController', mainController);
 
-  function mainController($scope, $geolocation, DirectionFactory, FlightFactory) {
-    vm = this;
+    function mainController($scope, $geolocation, $modal, $log, DirectionFactory, FlightFactory) {
+        vm = this;
 
-    $geolocation.getCurrentPosition({
-      timeout: 60000
-    }).then(function(position) {
-      $scope.myPosition = position;
-      console.log($scope.myPosition);
-      DirectionFactory.userLocation = $scope.myPosition;
-      DirectionFactory.getDrivingETAData();
-    });
+        vm.open = openModal;
 
+        function openModal(size) {
+            var modalInstance = $modal.open({
+                templateUrl: './partials/spinner_modal.html',
+                size: size,
+                
+            });
 
+            modalInstance.result.then(function handleModal(selectedItem) {
+                $scope.selected = selectedItem;
+            }, function modalGone() {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+        }
 
-    
-  }
+    }
 })();
