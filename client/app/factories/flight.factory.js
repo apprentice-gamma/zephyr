@@ -29,6 +29,7 @@
       
       $http.jsonp(url).
         success(function(data, status, headers, config) {
+        //vvvvvvvv assuming position of dep and arr in airports array
           if (direction === "arr") {
             factory.airport.latitude = data.appendix.airports[0].latitude;
             factory.airport.longitude = data.appendix.airports[0].longitude;
