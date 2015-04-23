@@ -37,7 +37,7 @@
             factory.airport.latitude = data.appendix.airports[1].latitude;
             factory.airport.longitude = data.appendix.airports[1].longitude;
           }
-          console.log(factory.airport);
+          console.log('AIRPORT LOCATION:', factory.airport);
         	deferred.resolve(data);
         	factory.flightStatus = data.flightStatuses[0];
         	factory.flightTimes = data.flightStatuses[0].operationalTimes;

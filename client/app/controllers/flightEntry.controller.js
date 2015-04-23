@@ -14,10 +14,6 @@
 				  .then(function(position) {
 				    console.log("MY POSITION:", position);
 				    DirectionFactory.userLocation = position;
-				    // DirectionFactory.getDrivingETAData().then(function() {
-				    // 	$state.go('track');
-				    // 	$modalStack.dismissAll('All Loaded Up!');
-				    // });
 				  	DirectionFactory.getDistance().then(function() {
 				  		$state.go('track');
 				  		$modalStack.dismissAll('All Loaded Up!');
