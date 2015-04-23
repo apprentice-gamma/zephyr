@@ -18,7 +18,10 @@
 				    // 	$state.go('track');
 				    // 	$modalStack.dismissAll('All Loaded Up!');
 				    // });
-				  	DirectionFactory.getDistance();
+				  	DirectionFactory.getDistance().then(function() {
+				  		$state.go('track');
+				  		$modalStack.dismissAll('All Loaded Up!');
+				  	});
 				  });				
 			});	
 			controller.open('sm');		

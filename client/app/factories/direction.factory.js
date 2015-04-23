@@ -48,6 +48,7 @@
                     factory.drivingData.duration = routeData.duration.value;
                     deferred.resolve(factory.drivingData);
                     console.log('Driving Data', factory.drivingData);
+                    factory.drivingETA = formatTimeAsUTC(factory.drivingData.duration / 60);
                 }
 
                 return deferred.promise;
