@@ -7,19 +7,9 @@ function Configuration($stateProvider, $urlRouterProvider) {
             url: "/",
             templateUrl: "../partials/flight_entry.html"
         })
-        .state('search', {
-            url: "/search",
-            templateUrl: "../partials/flight_search.html"
-          
-        })
         .state('results', {
             url: "/search/:airport/",
             templateUrl: "../partials/flight_search.results.html"
-        })
-        .state('airport', {
-            url: "/airport",
-            templateUrl: "../partials/airport.html"
-            
         })
         .state('track', {
             url: "/track", 
