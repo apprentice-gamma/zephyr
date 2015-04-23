@@ -10,7 +10,7 @@
 		</div>
 		<div class="list-group" id="flightSelect" ng-show="flightSearch.arrival">
 			<h1>If arr is called</h1>
-			<a class="list-group-item" ng-click="flightSearch.selectFlight()" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
+			<a class="list-group-item" ng-click="flightSearch.selectFlight(flight)" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
 			    Flight from {{flight.departureAirportFsCode}} arriving at {{flight.operationalTimes.publishedArrival}}
 			</a>
 			<pagination total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage" items-per-page="flightSearch.itemsPerPage" class="pagination-sm" boundary-links="true"></pagination>
