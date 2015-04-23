@@ -72,7 +72,7 @@
                 var url = factory.airportBase;
                 url += airport + '/';
                 url += direction + '/';
-                url += factory.getTodayAsString();
+                url += getTodayAsString();
                 url += factory.airportSuffix;  
                 url += factory.suffix;
                 console.log('AIRPORT SEARCH URL:' + url);
@@ -109,7 +109,7 @@
         		var url = factory.flightBase;
             	url += factory.flightComponents.airline + '/' + factory.flightComponents.number + '/';
             	url += direction + '/';
-            	url += factory.today;
+            	url += getTodayAsString();
             	url += factory.suffix;  
 
             	return url;
