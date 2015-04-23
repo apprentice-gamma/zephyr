@@ -7,18 +7,24 @@
 	<link rel="stylesheet" href="./css/styles.css">
 
 </head>
-<body ng-app="zephyr">
+<body ng-app="zephyr" ng-controller="mainController as vmMain">
+	
 	<div class="nav-fixed" ng-include="'./partials/nav_bar.html'"></div>
 	<div class="container-fixed" ui-view>
-		
+		<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
 	</div>
-	<!-- MODULES -->
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular.min.js"></script>
+
+	<!-- FRAMEWORK -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular.js"></script>
 	<script	type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular-route.js"></script>
 	<script	type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular-cookies.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
+	<!-- MODULES -->
 	<script	type="text/javascript" src="./app/modules/ui-bootstrap-0.12.1.js"></script>
-	<script src="https:////angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>
+	<script type="text/javascript" src="https:////angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>
 	<script type="text/javascript" src="./app/modules/ui-router.js"></script>
+	<script type="text/javascript" src='./app/modules/ngGeolocation.js'></script>
 	<script type="text/javascript" src="./app/modules/humanize-duration.js"></script>
 	<script type="text/javascript" src="./app/modules/locals.min.js"></script>
 	<script type="text/javascript" src="./app/modules/moment.min.js"></script>
@@ -29,8 +35,10 @@
 	<script	type="text/javascript" src="./app/controllers/flightSearch.controller.js"></script>
 	<script	type="text/javascript" src="./app/controllers/flightTracker.controller.js"></script>
 	<script	type="text/javascript" src="./app/controllers/activities.controller.js"></script>
+	<script	type="text/javascript" src="./app/controllers/main.controller.js"></script>
 	<script	type="text/javascript" src="./app/factories/flight.factory.js"></script>
 	<script	type="text/javascript" src="./app/services/speech.service.js"></script>
 	<script	type="text/javascript" src="./app/factories/activity.factory.js"></script>
+	<script	type="text/javascript" src="./app/factories/direction.factory.js"></script>
 </body>
 </html>
