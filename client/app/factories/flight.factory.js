@@ -11,6 +11,7 @@
             factory.flightTimes = {};
             factory.connectionTime = 0;
             factory.flightsAtAirport = [];
+            factory.arrival= false;
     		
             factory.flightBase = "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/";
     		factory.suffix = "?callback=JSON_CALLBACK&appId=588e049b&appKey=f9e4c706444bfc87888b78ddb64f00c8&utc=false";
@@ -23,7 +24,9 @@
             factory.findFlights = findFlights;
 		
             function findFlights(airport, direction) {
-              //parseFlightNumber(factory.flight);
+              if (direction === "arr") {
+                factory.arrival = true
+              };
               var url = buildAirport(airport, direction);
               console.log(url);
               var deferred = $q.defer();
@@ -52,6 +55,7 @@
               var url = buildFlight(direction);
               console.log(url);
               var deferred = $q.defer();
+
               
               $http.jsonp(url).
                 success(function(data, status, headers, config) {

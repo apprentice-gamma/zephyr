@@ -1,8 +1,15 @@
 <div class="col-md-12 column" ng-controller="flightSearchController as flightSearch">
 	<h3>{{flightSearch.msg}}</h3>
-	<ul>
+	<ul ng-hide="flightSearch.arrival">
+		<li><h1>If dep is called</h1></li>
 		<li ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport">
 			{{flight.arrivalAirportFsCode}}
+		</li>
+	</ul>
+	<ul ng-show="flightSearch.arrival">
+		<li><h1>If arr is called</h1></li>
+		<li ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport">
+			{{flight.departureAirportFsCode}}
 		</li>
 	</ul>
 </div>

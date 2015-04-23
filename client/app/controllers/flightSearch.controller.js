@@ -8,6 +8,7 @@
 
 		vm.msg = "Flight Search";
 		vm.flightFactory = FlightFactory;
+		vm.arrival = FlightFactory.arrival;
 		
 
 	}
