@@ -10,6 +10,7 @@
 
 		function trackFlight(direction) {
 			FlightFactory.getFlightData(direction).then(function(){
+				
 				$state.go('track');	
 			});			
 		}

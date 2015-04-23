@@ -3,7 +3,7 @@
     .module('zephyr')
     .controller('mainController', mainController);
 
-  function mainController($scope, $geolocation, DirectionFactory) {
+  function mainController($scope, $geolocation, DirectionFactory, FlightFactory) {
     vm = this;
 
     $geolocation.getCurrentPosition({
@@ -15,7 +15,7 @@
       DirectionFactory.getDrivingETAData();
     });
 
-    
+
 
     
   }
