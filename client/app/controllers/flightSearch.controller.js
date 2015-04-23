@@ -14,11 +14,10 @@
 
 		vm.selectFlight = selectFlight;
 
-		function selectFlight() {
+		function selectFlight(flight) {
 			alert("I'm SELECTED!");
-			$state.go('track');	
+			console.log(flight);
+			//$state.go('track');	
 		}
-		
-
 	}
 })();
