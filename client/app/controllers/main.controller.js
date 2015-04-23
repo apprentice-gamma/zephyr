@@ -8,9 +8,8 @@
 
         $geolocation.getCurrentPosition({timeout: 60000})
           .then(function(position) {
-            vm.myPosition = position;
-            console.log(vm.myPosition);
-            DirectionFactory.userLocation = vm.myPosition;
+            console.log("MY POSITION:" + position);
+            DirectionFactory.userLocation = position;
             DirectionFactory.getDrivingETAData();
           });
     }
