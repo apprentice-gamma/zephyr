@@ -8,7 +8,7 @@
 		vm.FlightFactory = FlightFactory;
 		vm.trackFlight = trackFlight;
 
-		function trackFlight(direction) {
+		function trackFlight(direction, controller) {
 			FlightFactory.getFlightData(direction).then(function(){
 				$geolocation.getCurrentPosition({timeout: 60000})
 				  .then(function(position) {
@@ -19,7 +19,7 @@
 				    });
 				  });				
 			});	
-			vmMain.open('sm');		
+			controller.open('sm');		
 		}
 	}
 })();
