@@ -9,39 +9,18 @@
         vm.open = openModal;
 
         function openModal(size) {
-
             var modalInstance = $modal.open({
-                templateUrl: 'myModalContent.html',
-                controller: 'ModalInstanceCtrl',
+                templateUrl: './partials/spinner_modal.html',
                 size: size,
                 
             });
 
-            modalInstance.result.then(function(selectedItem) {
+            modalInstance.result.then(function handleModal(selectedItem) {
                 $scope.selected = selectedItem;
-            }, function() {
+            }, function modalGone() {
                 $log.info('Modal dismissed at: ' + new Date());
             });
         }
 
     }
 })();
-
-// Please note that $modalInstance represents a modal window (instance) dependency.
-// It is not the same as the $modal service used above.
-
-angular.module('zephyr').controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
-
-  // $scope.items = items;
-  // $scope.selected = {
-  //   item: $scope.items[0]
-  // };
-
-  // $scope.ok = function () {
-  //   $modalInstance.close($scope.selected.item);
-  // };
-
-  // $scope.cancel = function () {
-  //   $modalInstance.dismiss('cancel');
-  // };
-});
