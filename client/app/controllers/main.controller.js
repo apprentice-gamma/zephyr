@@ -6,19 +6,15 @@
     function mainController($scope, $geolocation, $modal, $log, DirectionFactory, FlightFactory) {
         vm = this;
 
-        $scope.items = ['item1', 'item2', 'item3'];
+        vm.open = openModal;
 
-        $scope.open = function(size) {
+        function openModal(size) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'myModalContent.html',
                 controller: 'ModalInstanceCtrl',
                 size: size,
-                resolve: {
-                    items: function() {
-                        return $scope.items;
-                    }
-                }
+                
             });
 
             modalInstance.result.then(function(selectedItem) {
@@ -26,7 +22,7 @@
             }, function() {
                 $log.info('Modal dismissed at: ' + new Date());
             });
-        };
+        }
 
     }
 })();
@@ -34,18 +30,18 @@
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
 
-angular.module('zephyr').controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+angular.module('zephyr').controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
 
-  $scope.items = items;
-  $scope.selected = {
-    item: $scope.items[0]
-  };
+  // $scope.items = items;
+  // $scope.selected = {
+  //   item: $scope.items[0]
+  // };
 
-  $scope.ok = function () {
-    $modalInstance.close($scope.selected.item);
-  };
+  // $scope.ok = function () {
+  //   $modalInstance.close($scope.selected.item);
+  // };
 
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
+  // $scope.cancel = function () {
+  //   $modalInstance.dismiss('cancel');
+  // };
 });

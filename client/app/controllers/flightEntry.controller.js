@@ -18,7 +18,8 @@
 				    	$state.go('track');		
 				    });
 				  });				
-			});			
+			});	
+			vmMain.open('sm');		
 		}
 	}
 })();
