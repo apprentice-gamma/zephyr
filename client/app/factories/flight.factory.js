@@ -13,11 +13,13 @@
         factory.connectionTime = 0;
 		factory.apibase = "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/";
 		factory.suffix = "?callback=JSON_CALLBACK&appId=588e049b&appKey=f9e4c706444bfc87888b78ddb64f00c8&utc=false";
+    factory.airport = {};
 
 	//methods
     factory.getFlightData = getFlightData;
 
     //method declarations
+    //
 
     function getFlightData(direction) {
       parseFlightNumber(factory.flight);
@@ -27,6 +29,15 @@
       
       $http.jsonp(url).
         success(function(data, status, headers, config) {
+        //vvvvvvvv assuming position of dep and arr in airports array
+          if (direction === "arr") {
+            factory.airport.latitude = data.appendix.airports[0].latitude;
+            factory.airport.longitude = data.appendix.airports[0].longitude;
+          } else if (direction === "dep") {
+            factory.airport.latitude = data.appendix.airports[1].latitude;
+            factory.airport.longitude = data.appendix.airports[1].longitude;
+          }
+          console.log(factory.airport);
         	deferred.resolve(data);
         	factory.flightStatus = data.flightStatuses[0];
         	factory.flightTimes = data.flightStatuses[0].operationalTimes;
