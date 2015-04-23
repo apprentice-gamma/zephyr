@@ -8,9 +8,10 @@
     factory.apibase = "https://maps.googleapis.com/maps/api/directions/json?origin=";
     factory.apisuffix = "&mode=driving&key=AIzaSyAd0RUfc4XbIBhZ-cNdViFL2yronVellCc";
 
-    factory.userLocation;
-    factory.latitude;
-    factory.longitude;
+    factory.userLocation = undefined;
+    factory.latitude = undefined;
+    factory.longitude = undefined;
+
     factory.destination = "42.2125,-83.3533";     //DELETE THIS LATER
 
     factory.getDrivingETAData = getDrivingETAData;

@@ -11,11 +11,11 @@
 
 		vm.carCountdown = calculateCountdown();
 		vm.flightCountdown = calculateCountdown(FlightFactory.connectionTime);
-		
+
 		console.log("it's the final countdown",vm.flightCountdown, vm.carCountdown);
 
 		function calculateCountdown(input) {
-			console.log("Calculation made")
+			console.log("Calculation made");
 			var d = new Date(input);
 			var now = new Date();
 			return (d.getTime() - now.getTime()) / 60000;
