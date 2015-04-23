@@ -3,7 +3,7 @@
 		.module('zephyr')
 		.controller('flightEntry', flightEntry);
 
-	function flightEntry(FlightFactory, SpeechService, DirectionFactory, $state, $geolocation) {
+	function flightEntry(FlightFactory, SpeechService, DirectionFactory, $state, $geolocation, $modalStack) {
 		var vm = this;
 		vm.FlightFactory = FlightFactory;
 		vm.trackFlight = trackFlight;
@@ -15,7 +15,8 @@
 				    console.log("MY POSITION:", position);
 				    DirectionFactory.userLocation = position;
 				    DirectionFactory.getDrivingETAData().then(function() {
-				    	$state.go('track');		
+				    	$state.go('track');
+				    	$modalStack.dismissAll('All Loaded Up!');
 				    });
 				  });				
 			});	
