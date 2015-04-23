@@ -7,12 +7,35 @@
 	<link rel="stylesheet" href="./css/styles.css">
 
 </head>
-<body ng-app="zephyr">
+<body ng-app="zephyr" ng-controller="mainController as vmMain">
 	
 	<div class="nav-fixed" ng-include="'./partials/nav_bar.html'"></div>
 	<div class="container-fixed" ui-view>
 		<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
 	</div>
+
+	  <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Im a modal!</h3>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="item in items">
+                    <a ng-click="selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <button class="btn btn-default" ng-click="open()">Open me!</button>
+    <button class="btn btn-default" ng-click="open('lg')">Large modal</button>
+    <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
+    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
 
 	<!-- FRAMEWORK -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular.js"></script>
