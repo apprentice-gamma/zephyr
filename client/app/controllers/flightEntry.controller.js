@@ -22,13 +22,28 @@
                         .then(function(position) {
                             console.log("MY POSITION:", position);
                             DirectionFactory.userLocation = position;
-                            DirectionFactory.getDistance().then(function() {
-                                FlightFactory.getTSAWaitTime().then(function() {
-                                    FlightFactory.getAvgWaitTime().then(function() {
+                            DirectionFactory.getDistance().then(function(answer) {
+
+                                FlightFactory.getTSAWaitTime().then(function(answer) {
+
+                                    FlightFactory.getAvgWaitTime().then(function(answer) {
+                                        $state.go('track');
+                                        FlightFactory.showWait = true;
+                                        $modalStack.dismissAll('All Loaded Up!');
+                                    }, function(error) {
+                                        $state.go('track');
+                                    });
+
+                                }, function(error) {
+                                    FlightFactory.showWait = false;
+                                    FlightFactory.getAvgWaitTime().then(function(answer) {
                                         $state.go('track');
                                         $modalStack.dismissAll('All Loaded Up!');
+                                    }, function(error) {
+                                        $state.go('track');
                                     });
                                 });
+
                             });
                         });
                 });
@@ -36,6 +51,7 @@
 
             } else if(vm.airport) {
                 FlightFactory.arrival = true;
+                FlightFactory.showWait = false;
                 FlightFactory.findFlights(vm.airport, direction).then(function() {
                     SpeechService.speak('Searching Airport Code  ' + vm.airport);
                     $geolocation.getCurrentPosition({
@@ -57,5 +73,5 @@
         function listenCommand() {
             SpeechService.listenForCommands();
         }
-	}
+    }
 })();

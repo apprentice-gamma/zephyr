@@ -132,14 +132,9 @@ p {
 }
 
 /*tracker*/
-/*#plane {
-  height: 150px;
-  width: 120px;
+.timer {
+  font-size: 70px;
 }
-#car {
-  height: 150px;
-  width: 120px;
-}*/
 
 /*pager*/
 .pager {
