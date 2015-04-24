@@ -12,6 +12,7 @@
 
 		vm.FlightFactory = FlightFactory;
 		vm.ActivityFactory = ActivityFactory;
+		vm.DirectionFactory = DirectionFactory;
 		vm.carCountdown = FlightFactory.calculateCountdown(DirectionFactory.drivingETA);
 		vm.flightCountdown = FlightFactory.calculateCountdown(FlightFactory.connectionTime);
 		vm.changeTimerClass = changeTimerClass;	
