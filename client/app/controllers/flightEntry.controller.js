@@ -16,7 +16,6 @@
 
         function trackFlight(direction, controller) {
             SpeechService.speak(FlightFactory.flight);
-
             if (FlightFactory.flight) {
                 FlightFactory.getFlightData(direction).then(function() {
                     $geolocation.getCurrentPosition({
@@ -52,11 +51,6 @@
 
         }
 
-		function submit() {
-			parseFlightNumber(FlightFactory.flight);
-			SpeechService.speak(FlightFactory.flight);
-		}
-
 		function parseFlightNumber(flightNumber) {
 			var match = /\d/.exec(flightNumber);
 			var flightComponents = {};
@@ -76,8 +70,8 @@
 			SpeechService.listen(vm, 'test');
 		}
 
-        function listenCommand() {
-            SpeechService.listenForCommands(vm);
+        function listenCommand(controller) {
+            SpeechService.listenForCommands(vm, controller);
         }
 	}
 })();
