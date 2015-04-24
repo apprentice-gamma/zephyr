@@ -16,10 +16,8 @@
                 FlightFactory.arrival = false;
                 SpeechService.speak('Tracking Flight' + FlightFactory.flight);
                 FlightFactory.getFlightData(direction).then(function() {
-                    $geolocation.getCurrentPosition({
-                        timeout: 60000
-                    })
-                        .then(function(position) {
+                    DirectionFactory.airport = FlightFactory.getAirportFromFlight();
+                    $geolocation.getCurrentPosition({ timeout: 60000 }) .then(function(position) {
                             console.log("MY POSITION:", position);
                             DirectionFactory.userLocation = position;
                             DirectionFactory.getDistance().then(function(answer) {
@@ -52,6 +50,8 @@
             } else if(vm.airport) {
                 FlightFactory.arrival = true;
                 FlightFactory.showWait = false;
+                DirectionFactory.airport = FlightFactory.getAirportFromSearch(vm.airport);
+
                 FlightFactory.findFlights(vm.airport, direction).then(function() {
                     SpeechService.speak('Searching Airport Code  ' + vm.airport);
                     $geolocation.getCurrentPosition({

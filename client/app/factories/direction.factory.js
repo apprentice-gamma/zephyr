@@ -10,13 +10,22 @@
             factory.longitude = undefined;
             factory.drivingMinutes = 0;
             factory.drivingETA = 0;
+            factory.airport = {};
 
-            factory.destLat = "42.216172";
+            factory.destLat = "42.216172";          //DEFAULT TO DTW
             factory.destLong = "-83.355384";
 
             factory.drivingData = {};
 
+            factory.setAirportLocation = setAirportLocation;
             factory.getDistance = getDistance;
+
+            function setAirportLocation() {
+                if(factory.airport.latitude)
+                    factory.destLat = airport.latitude;
+                if(factory.airport.longitude)
+                    factory.destLon = airport.longitude;
+            }
 
             function getDistance() {
                 formatUserLocation(factory.userLocation);
