@@ -8,6 +8,7 @@
             factory.userLocation = undefined;
             factory.latitude = undefined;
             factory.longitude = undefined;
+            factory.drivingMinutes = 0;
             factory.drivingETA = 0;
 
             factory.destLat = "42.216172";
@@ -40,8 +41,9 @@
                     factory.drivingData.distance = routeData.distance.value;
                     factory.drivingData.duration = routeData.duration.value;
                     deferred.resolve(factory.drivingData);
-                    console.log('Driving Data', factory.drivingData);
-                    factory.drivingETA = formatTimeAsUTC(factory.drivingData.duration / 60);
+                    console.log('DRIVING DATA', factory.drivingData);
+                    factory.drivingMinutes = factory.drivingData.duration / 60;
+                    factory.drivingETA = formatTimeAsUTC(factory.drivingMinutes);
                 }
 
                 return deferred.promise;
@@ -55,7 +57,6 @@
         function formatTimeAsUTC(input) {
             var now = new Date();
             var timeUTC = new Date(now.getTime() + (input * 60000));
-            console.log(timeUTC);
             return timeUTC;
         }
 

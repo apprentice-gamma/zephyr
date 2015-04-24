@@ -8,7 +8,7 @@
 		<div class="form-group">
 			<h3>Airport Code</h3>
 			
-			<input type="text" class="form-control input-lg" id="inputFlight" placeholder="LAX" ng-model="vmFlightEntry.airport"/>
+			<input type="text" class="form-control input-lg" id="inputFlight" placeholder="DTW" ng-model="vmFlightEntry.airport"/>
 
 			<p class="text-center trimBottom">-or-</p>
 			
@@ -18,6 +18,9 @@
 		<div class="buttons">
 			<button class="landingBtnFirst" ng-click="vmFlightEntry.trackFlight('dep', vmMain)">Departure</button> 
 			<button class="landingBtn" ng-click="vmFlightEntry.trackFlight('arr', vmMain)">Arrival</button>
+		</div>
+		<div class="row text-center">
+			<button class="glyphicon glyphicon-bullhorn btn-lg btn-link" ng-click="vmFlightEntry.listenCommand()"> </button>
 		</div>
 	</form>
 </div>

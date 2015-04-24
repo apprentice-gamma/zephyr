@@ -59,7 +59,7 @@
       "ITO" : "Hilo Airport",
       "HNL" : "Honolulu International Airport",
       "OGG" : "Kahului Airport",
-      "KOA" : "Kailua Airport"
+      "KOA" : "Kailua Airport",
       "LIH" : "Lihue Airport",
       "BOI" : "Boise Airport",
       "MDW" : "Chicago Midway Airport",
@@ -127,7 +127,7 @@
       "FAY" : "Fayetteville Airport",
       "GSO" : "Greensboro Airport",
       "RDU" : "Raleigh Airport",
-      "INT" : "Winston-Salem Airport"
+      "INT" : "Winston-Salem Airport",
       "BIS" : "Bismark Airport",
       "FAR" : "Fargo Airport",
       "CAK" : "Akron Airport",
@@ -176,7 +176,6 @@
       "BTV" : "Burlington Airport",
       "MPV" : "Montpelier Airport",
       "RUT" : "Rutland Airport",
-      "IAD" : "Dulles Airport",
       "PHF" : "Newport News Airport",
       "ORF" : "Norfolk Airport",
       "RIC" : "Richmond Airport",
@@ -193,7 +192,7 @@
       "CYS" : "Cheyenne Airport",
       "JAC" : "Jackson Hole Airport",
       "RKS" : "Rock Springs Airport"
-    }
+    };
 
     return factory;
   }

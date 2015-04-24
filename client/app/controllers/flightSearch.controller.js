@@ -3,20 +3,29 @@
 		.module('zephyr')
 		.controller('flightSearchController', flightSearch);
 
-	function flightSearch(FlightFactory, $scope, $state) {
+	function flightSearch(FlightFactory, AirportFactory, AirlineFactory, $scope, $state) {
 		var vm = this;
+		vm.flightFactory = FlightFactory;
+		vm.airportFactory = AirportFactory;
 
 		vm.currentPage = 1;
 		vm.itemsPerPage = 5;
 		vm.msg = "Flight Search";
-		vm.flightFactory = FlightFactory;
-		vm.arrival = FlightFactory.arrival;
 
 		vm.selectFlight = selectFlight;
+		vm.getAirportName = getAirportName;
+		vm.getAirlineName = getAirlineName;
+
+		function getAirportName(airportCode) {
+			return AirportFactory.airports[airportCode];
+		}
+
+		function getAirlineName(airlineCode) {
+			return AirlineFactory.airlines[airlineCode];
+		}
 
 		function selectFlight(flight) {
-			//alert("I'm SELECTED!");
-			console.log('FLIGHT IN CONTROLLER', flight);
+			FlightFactory.flightID = flight.flightID;
 			FlightFactory.getConnectionTimeFromFlightList(flight);
 			$state.go('track');	
 		}

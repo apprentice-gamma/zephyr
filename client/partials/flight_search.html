@@ -3,25 +3,24 @@
 	<p>This could be some helping text</p>
 </div>
 	
-<div class="mainView" ng-controller="flightSearchController as flightSearch">
+<div class="mainView" ng-controller="flightSearchController as vmFlightSearch">
 		<h3>Airline</h3>
-		<input type="text" class="form-control input-lg" id="inputAirline" placeholder="Uninted" ng-model="flightSearch.airline"/>
+		<input type="text" class="form-control input-lg" id="inputAirline" placeholder="Uninted" ng-model="vmFlightSearch.airline"/>
 
-		<div class="list-group flightSelect" ng-hide="flightSearch.arrival">
-			<a ng-href="" ng-click="flightSearch.selectFlight(flight)"class="list-group-item" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | filter:{'carrierFsCode': flightSearch.airline} | limitTo:4:((flightSearch.currentPage - 1) * 4)">
+		<div class="list-group flightSelect" ng-hide="vmFlightSearch.flightFactory.arrival">
+			<a ng-href="" ng-click="vmFlightSearch.selectFlight(flight)"class="list-group-item" ng-repeat="flight in vmFlightSearch.flightFactory.flightsAtAirport | filter:{'carrierFsCode': vmFlightSearch.airline} | limitTo:4:((vmFlightSearch.currentPage - 1) * 4)">
 				<p class="trimBottom">
 			    Flight to {{flight.arrivalAirportFsCode}} departing at {{flight.operationalTimes.publishedDeparture.dateLocal | date:"h:mma"}} <span class="pull-right">{{flight.carrierFsCode}}</span>
 			    </p>
 			</a>
-			<pager total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage" previous-text='<' next-text='>'></pager>
+			<pager total-items="vmFlightSearch.flightFactory.flightsAtAirport.length" ng-model="vmFlightSearch.currentPage" previous-text='<' next-text='>'></pager>
 		</div>
-		<ul class="list-group flightSelect" ng-show="flightSearch.arrival">
-			<a ng-click="flightSearch.selectFlight(flight)" class="list-group-item" ng-class="{'last':$last}" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | filter:{'carrierFsCode': flightSearch.airline} | limitTo:4:((flightSearch.currentPage - 1) * 4)">
+		<ul class="list-group flightSelect" ng-show="vmFlightSearch.flightFactory.arrival">
+			<a ng-click="vmFlightSearch.selectFlight(flight)" class="list-group-item" ng-class="{'last':$last}" ng-repeat="flight in vmFlightSearch.flightFactory.flightsAtAirport | filter:{'carrierFsCode': vmFlightSearch.airline} | limitTo:4:((vmFlightSearch.currentPage - 1) * 4)">
 				<p class="trimBottom">
 			    Flight from {{flight.departureAirportFsCode}} arriving at {{flight.operationalTimes.publishedArrival.dateLocal | date:"h:mma"}} <span class="pull-right">{{flight.carrierFsCode}}</span>
 			    </p>
 			</a>
-			<pager total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage" previous-text='<' next-text='>'></pager>
+			<pager total-items="vmFlightSearch.flightFactory.flightsAtAirport.length" ng-model="vmFlightSearch.currentPage" previous-text='<' next-text='>'></pager>
 		</ul>
 </div>
-
