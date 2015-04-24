@@ -12,8 +12,8 @@
 
 
         function trackFlight(direction, controller) {
-            SpeechService.speak(FlightFactory.flight);
             if (FlightFactory.flight) {
+                SpeechService.speak(FlightFactory.flight);
                 FlightFactory.getFlightData(direction).then(function() {
                     $geolocation.getCurrentPosition({
                         timeout: 60000

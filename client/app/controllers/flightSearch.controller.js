@@ -3,16 +3,23 @@
 		.module('zephyr')
 		.controller('flightSearchController', flightSearch);
 
-	function flightSearch(FlightFactory, $scope, $state) {
+	function flightSearch(FlightFactory, AirportFactory, $scope, $state) {
 		var vm = this;
+		vm.flightFactory = FlightFactory;
+		vm.airportFactory = AirportFactory;
 
 		vm.currentPage = 1;
 		vm.itemsPerPage = 5;
 		vm.msg = "Flight Search";
-		vm.flightFactory = FlightFactory;
 		vm.arrival = FlightFactory.arrival;
 
 		vm.selectFlight = selectFlight;
+		vm.getAirportName = getAirportName;
+
+		function getAirportName(airportCode) {
+			console.log(AirportFactory.airports[airportCode]);
+			return AirportFactory.airports[airportCode];
+		}
 
 		function selectFlight(flight) {
 			FlightFactory.flightID = flight.flightID;
