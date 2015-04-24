@@ -43,8 +43,10 @@
             if (factory.arrival)
                 direction = "arrivalAirportFsCode";
 
+            console.log(factory.flightStatus);
+
             for (var x = 0; x < factory.airports.length; x++) {
-                if(factory.airports[x].fs === factory.FlightStatus[direction]){
+                if(factory.airports[x].fs === factory.flightStatus[direction]){
                     //This is the airport
                     airport.fsCode = factory.airports[x].fs;
                     airport.name = factory.airports[x].name;
@@ -62,8 +64,6 @@
             var direction = "departureAirportFsCode";
             if (factory.arrival)
                 direction = "arrivalAirportFsCode";
-
-            console.log('FIND AIRPORT', factory.airports, airportFsCode);
 
             for (var x = 0; x < factory.airports.length; x++) {
                 if(factory.airports[x].fs === airportFsCode){
