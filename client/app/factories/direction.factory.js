@@ -22,13 +22,14 @@
 
             function setAirportLocation() {
                 if(factory.airport.latitude)
-                    factory.destLat = airport.latitude;
+                    factory.destLat = factory.airport.latitude;
                 if(factory.airport.longitude)
-                    factory.destLon = airport.longitude;
+                    factory.destLon = factory.airport.longitude;
             }
 
             function getDistance() {
                 formatUserLocation(factory.userLocation);
+                setAirportLocation();
                 console.log("LAT, LONG", factory.latitude, factory.longitude);
                 var origin = new google.maps.LatLng(factory.latitude, factory.longitude);
                 var destination = new google.maps.LatLng(factory.destLat, factory.destLong);

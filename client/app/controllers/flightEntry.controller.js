@@ -50,10 +50,10 @@
             } else if(vm.airport) {
                 FlightFactory.arrival = true;
                 FlightFactory.showWait = false;
-                DirectionFactory.airport = FlightFactory.getAirportFromSearch(vm.airport);
-
                 FlightFactory.findFlights(vm.airport, direction).then(function() {
+                    DirectionFactory.airport = FlightFactory.getAirportFromSearch(vm.airport);
                     SpeechService.speak('Searching Airport Code  ' + vm.airport);
+                    
                     $geolocation.getCurrentPosition({
                         timeout: 60000
                     })

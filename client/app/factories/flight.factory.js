@@ -50,6 +50,7 @@
                     airport.name = factory.airports[x].name;
                     airport.latitude = factory.airports[x].latitude;
                     airport.longitude = factory.airports[x].longitude;
+                    console.log('FLIGHT AIRPORT MATCH FOUND');
                 }
             }
 
@@ -62,6 +63,8 @@
             if (factory.arrival)
                 direction = "arrivalAirportFsCode";
 
+            console.log('FIND AIRPORT', factory.airports, airportFsCode);
+
             for (var x = 0; x < factory.airports.length; x++) {
                 if(factory.airports[x].fs === airportFsCode){
                     //This is the airport
@@ -69,6 +72,7 @@
                     airport.name = factory.airports[x].name;
                     airport.latitude = factory.airports[x].latitude;
                     airport.longitude = factory.airports[x].longitude;
+                    console.log('SEARCH AIRPORT MATCH FOUND');
                 }
             }
 
@@ -109,6 +113,7 @@
                 deferred.resolve(data);
                 console.log(data);
                 factory.flightsAtAirport = data.flightStatuses;
+                factory.airports = data.appendix.airports;
             })
                 .error(function() {
                     console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
