@@ -3,16 +3,17 @@
 
 		<div class="list-group" id="flightSelect" ng-hide="flightSearch.arrival">
 			<h1>If dep is called</h1>
-			<a class="list-group-item" ng-click="flightSearch.selectFlight(flight)" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
+			<a ng-href="" ng-click="flightSearch.flightFactory"class="list-group-item" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
 			    Flight to {{flight.arrivalAirportFsCode}} departing at {{flight.operationalTimes.publishedDeparture}}
 			</a>
-			<pagination total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage" items-per-page="flightSearch.itemsPerPage" class="pagination-sm" boundary-links="true"></pagination>
+			<pager total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage"></pager>
 		</div>
 		<div class="list-group" id="flightSelect" ng-show="flightSearch.arrival">
 			<h1>If arr is called</h1>
-			<a class="list-group-item" ng-click="flightSearch.selectFlight(flight)" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
+			<a ng-href="" ng-click="flightSearch.flightFactory"class="list-group-item" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
 			    Flight from {{flight.departureAirportFsCode}} arriving at {{flight.operationalTimes.publishedArrival}}
 			</a>
-			<pagination total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage" items-per-page="flightSearch.itemsPerPage" class="pagination-sm" boundary-links="true"></pagination>
+			
+			<pager total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage"></pager>
 		</div>
 </div>
