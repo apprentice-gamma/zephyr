@@ -58,10 +58,6 @@
         }
 
         function findFlights(airport, direction) {
-            if (direction === "arr") {
-                factory.arrival = true;
-            }
-
             var url = buildAirportURL(airport, direction);
             console.log(url);
             var deferred = $q.defer();

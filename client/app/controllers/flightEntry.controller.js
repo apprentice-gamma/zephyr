@@ -13,6 +13,7 @@
 
         function trackFlight(direction, controller) {
             if (FlightFactory.flight) {
+                FlightFactory.arrival = false;
                 SpeechService.speak('Tracking Flight' + FlightFactory.flight);
                 FlightFactory.getFlightData(direction).then(function() {
                     $geolocation.getCurrentPosition({
@@ -34,6 +35,7 @@
                 controller.open('sm');
 
             } else if(vm.airport) {
+                FlightFactory.arrival = true;
                 FlightFactory.findFlights(vm.airport, direction).then(function() {
                     SpeechService.speak('Searching Airport Code  ' + vm.airport);
                     $geolocation.getCurrentPosition({
@@ -49,8 +51,7 @@
                         });
                 });
                 controller.open('sm');
-            }
-
+            } 
         }
 
         function listenCommand() {

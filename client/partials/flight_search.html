@@ -7,7 +7,7 @@
 		<h3>Airline</h3>
 		<input type="text" class="form-control input-lg" id="inputAirline" placeholder="Uninted" ng-model="vmFlightSearch.airline"/>
 
-		<div class="list-group flightSelect" ng-hide="vmFlightSearch.arrival">
+		<div class="list-group flightSelect" ng-hide="vmFlightSearch.flightFactory.arrival">
 			<a ng-href="" ng-click="vmFlightSearch.selectFlight(flight)"class="list-group-item" ng-repeat="flight in vmFlightSearch.flightFactory.flightsAtAirport | filter:{'carrierFsCode': vmFlightSearch.airline} | limitTo:4:((vmFlightSearch.currentPage - 1) * 4)">
 				<p class="trimBottom">
 			    Flight to {{flight.arrivalAirportFsCode}} departing at {{flight.operationalTimes.publishedDeparture.dateLocal | date:"h:mma"}} <span class="pull-right">{{flight.carrierFsCode}}</span>
@@ -15,7 +15,7 @@
 			</a>
 			<pager total-items="vmFlightSearch.flightFactory.flightsAtAirport.length" ng-model="vmFlightSearch.currentPage" previous-text='<' next-text='>'></pager>
 		</div>
-		<ul class="list-group flightSelect" ng-show="vmFlightSearch.arrival">
+		<ul class="list-group flightSelect" ng-show="vmFlightSearch.flightFactory.arrival">
 			<a ng-click="vmFlightSearch.selectFlight(flight)" class="list-group-item" ng-class="{'last':$last}" ng-repeat="flight in vmFlightSearch.flightFactory.flightsAtAirport | filter:{'carrierFsCode': vmFlightSearch.airline} | limitTo:4:((vmFlightSearch.currentPage - 1) * 4)">
 				<p class="trimBottom">
 			    Flight from {{flight.departureAirportFsCode}} arriving at {{flight.operationalTimes.publishedArrival.dateLocal | date:"h:mma"}} <span class="pull-right">{{flight.carrierFsCode}}</span>

@@ -11,7 +11,6 @@
 		vm.currentPage = 1;
 		vm.itemsPerPage = 5;
 		vm.msg = "Flight Search";
-		vm.arrival = FlightFactory.arrival;
 
 		vm.selectFlight = selectFlight;
 		vm.getAirportName = getAirportName;
