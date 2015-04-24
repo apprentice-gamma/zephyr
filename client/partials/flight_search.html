@@ -1,29 +1,26 @@
-<div class="col-md-12 column" ng-controller="flightSearchController as flightSearch">
-<!-- 	<h3>{{flightSearch.msg}}</h3>
- -->	<table class="table table-hover table-condensed">
-			<thead>
-				<tr>
-					<th>Flight</th>
-					<th>Airport</th>
-					<th>Time</th>
-				</tr>
-			</thead>
-		
-			<tbody ng-if="!flightSearch.arrival">
-				<tr ng-click="flightSearch.selectFlight(flight)" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
-					<td tooltip="{{flightSearch.getAirlineName(flight.carrierFsCode)}}" tooltip-append-to-body="true">{{flight.carrierFsCode}} {{flight.flightNumber}}</td>
-					<td tooltip="{{flightSearch.getAirportName(flight.departureAirportFsCode)}}" tooltip-append-to-body="true">{{flight.departureAirportFsCode}}</td>
-					<td>{{flight.operationalTimes.publishedArrival.dateLocal | date : 'EEE, MMM dd @ h:mma'}}</td>
-				</tr>
-			</tbody>	
+<div class="sideView">
+	<h1>ZEPHYR</h1>
+	<p>This could be some helping text</p>
+</div>
+	
+<div class="mainView" ng-controller="flightSearchController as flightSearch">
+		<h3>Airline</h3>
+		<input type="text" class="form-control input-lg" id="inputAirline" placeholder="Uninted" ng-model="flightSearch.airline"/>
 
-			<tbody ng-if="flightSearch.arrival">
-				<tr ng-click="flightSearch.selectFlight(flight)" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
-					<td tooltip="{{flightSearch.getAirlineName(flight.carrierFsCode)}}" tooltip-append-to-body="true">{{flight.carrierFsCode}} {{flight.flightNumber}}</td>
-					<td tooltip="{{flightSearch.getAirportName(flight.arrivalAirportFsCode)}}" tooltip-append-to-body="true">{{flight.arrivalAirportFsCode}}</td>
-					<td>{{flight.operationalTimes.publishedDeparture.dateLocal | date: 'EEE, MMM dd @ h:mma'}}</td>
-				</tr>
-			</tbody>
-		</table>
-		<pagination total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage" items-per-page="flightSearch.itemsPerPage" class="pagination-sm" boundary-links="true"></pagination>
+		<div class="list-group flightSelect" ng-hide="flightSearch.arrival">
+			<a ng-href="" ng-click="flightSearch.selectFlight(flight)"class="list-group-item" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | filter:{'carrierFsCode': flightSearch.airline} | limitTo:4:((flightSearch.currentPage - 1) * 4)">
+				<p class="trimBottom">
+			    Flight to {{flight.arrivalAirportFsCode}} departing at {{flight.operationalTimes.publishedDeparture.dateLocal | date:"h:mma"}} <span class="pull-right">{{flight.carrierFsCode}}</span>
+			    </p>
+			</a>
+			<pager total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage" previous-text='<' next-text='>'></pager>
+		</div>
+		<ul class="list-group flightSelect" ng-show="flightSearch.arrival">
+			<a ng-click="flightSearch.selectFlight(flight)" class="list-group-item" ng-class="{'last':$last}" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | filter:{'carrierFsCode': flightSearch.airline} | limitTo:4:((flightSearch.currentPage - 1) * 4)">
+				<p class="trimBottom">
+			    Flight from {{flight.departureAirportFsCode}} arriving at {{flight.operationalTimes.publishedArrival.dateLocal | date:"h:mma"}} <span class="pull-right">{{flight.carrierFsCode}}</span>
+			    </p>
+			</a>
+			<pager total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage" previous-text='<' next-text='>'></pager>
+		</ul>
 </div>

@@ -5,7 +5,7 @@
 
     function FlightFactory($http, $q) {
         var factory = {};
-        factory.flight = "dl2024";
+        factory.flight = "";
         factory.connectionTime = 0;
         factory.tsaTime = undefined;
         factory.avgTime = undefined;
@@ -166,10 +166,6 @@
             });
         }
 
-        function dataFromFlightList(direction, index) {
-            factory.connectionTime = getConnectionTimeFromFlightList(direction, index);
-
-        }
 
         function buildAirportURL(airport, direction) {
             var url = factory.airportBase;

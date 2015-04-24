@@ -1,11 +1,68 @@
-.container-fixed {
-  margin: 0 auto;
-  max-width: 800px;
-  max-height: 380px;
-  min-height: 380px;
-  padding: 5px;
-  border: 3px solid black;
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+  line-height: 1.1;
+  color: inherit;
 }
+
+
+h1 { 
+    display: block;
+    font-size: 40px;
+    color: #fff;
+}
+
+h3 { 
+    display: block;
+    margin-top: 20px;
+    font-size: 26px;
+    color: #000;
+}
+
+p {
+  font-size: 22px;
+}
+
+.trimTop {
+  margin-top: 0px;
+}
+.trimBottom {
+  margin-bottom: 0px;
+}
+
+.dash {
+  margin: 0 auto;
+  width: 800px;
+  height: 380px;
+  background-color: #edaa2b;
+  background-image: url("../images/bg-zephyr.png");
+}
+
+.sideView {
+  width: 230px;
+  padding-left: 30px;
+  float: left;
+  clear: left;
+}
+
+.sideView > p {
+  color: #edaa2b;
+  margin-top: 60px;
+  margin-right: 10px;
+}
+.mainView {
+  width: 570px;
+  padding-top: 70px;
+  padding-left: 30px;
+  padding-right: 30px;
+  float: left
+}
+
+.mainView > p {
+  color: #000;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 .nav-fixed {
   margin: 0 auto;
   max-width: 800px;
@@ -14,13 +71,106 @@
 .container-fixed > hr {
   margin: 30px 0;
 }
+/*landing page*/
 
-.jumbo-fixed {
+.form-horizontal .form-group {
+  margin-right: 0px;
+  margin-left: 0px;
 }
 
-.angular-google-map-container { 
-  height: 400px; 
+.landingBtn{
+  float: left;
+  width: 250px;
+  height: 46px;
+  margin-right: 0px;
+  margin-left: 0px;
+  border: 0px solid black;
+  border-radius: 6px;
+  color: #fff;
+  background-color: #444f5a;
+  font-size: 24px;
+  font-weight: 300;
 }
-table {
-  font-size: 22pt;
+
+.landingBtnFirst{
+  float: left;
+  clear: left;
+  width: 250px;
+  height: 46px;
+  margin-right: 10px;
+  margin-left: 0px;
+  border: 0px solid black;
+  border-radius: 6px;
+  color: #fff;
+  background-color: #444f5a;
+  font-size: 24px;
+  font-weight: 300;
+}
+
+/*flight list*/
+.list-group .flightSelect{
+  margin-top: 58px;
+  margin-bottom: 2px;
+}
+.list-group-item {
+  padding: 4.5px 10px;
+/*  margin-bottom: -3px;*/
+  background-color: #fff;
+  border: 0px solid #edaa2b;
+  border-bottom: 3px solid #edaa2b;
+}
+.list-group-item:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.last {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+#inputAirline {
+  margin-bottom: 10px;
+}
+
+
+/*pager*/
+.pager {
+  padding-left: 0;
+  margin:0;
+
+  text-align: center;
+  list-style: none;
+}
+.pager li {
+  display: inline;
+}
+.pager li > a,
+.pager li > span {
+  display: inline-block;
+  padding: 0px 14px;
+  margin: 2px 0px 0px;
+  background-color: #fff;
+  border: 0px solid #ddd;
+  border-radius: 6px;
+}
+.pager li > a:hover,
+.pager li > a:focus {
+  text-decoration: none;
+  background-color: #eee;
+}
+.pager .next > a,
+.pager .next > span {
+  float: right;
+}
+.pager .previous > a,
+.pager .previous > span {
+  float: left;
+}
+.pager .disabled > a,
+.pager .disabled > a:hover,
+.pager .disabled > a:focus,
+.pager .disabled > span {
+  color: #999;
+  cursor: not-allowed;
+  background-color: #fff;
+>>>>>>> master
 }
