@@ -131,6 +131,15 @@ p {
   margin-bottom: 10px;
 }
 
+/*tracker*/
+/*#plane {
+  height: 150px;
+  width: 120px;
+}
+#car {
+  height: 150px;
+  width: 120px;
+}*/
 
 /*pager*/
 .pager {
@@ -172,5 +181,4 @@ p {
   color: #999;
   cursor: not-allowed;
   background-color: #fff;
->>>>>>> master
 }

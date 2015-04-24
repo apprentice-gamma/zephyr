@@ -3,17 +3,17 @@
 	<p>This could be some helping text</p>
 </div>
 	
-<div class="mainView" ng-controller="flightTracker as vmTracker">
+<div class="mainView" class="trackerMain" ng-controller="flightTracker as vmTracker">
 	<div class="col-md-6 column jumbo-fixed">
 		<div >
-			<img src="../images/plane.jpg" class="img-responsive center-block"/>
+			<img id="plane" src="../images/planeBottom.png" class="center-block"/>
 			<h1 class="text-center"><timer interval="60000" countdown="vmTracker.flightCountdown">{{countdown}}m</timer></h1>
 			<h5 class="text-center" ng-if="vmTracker.FlightFactory.arrival">Wait Time: {{vmTracker.FlightFactory.tsaTime}} (tsa) | {{vmTracker.FlightFactory.avgTime}} (avg)</h5>
 		</div>
 	</div>
 	<div class="col-md-6 column jumbo-fixed">
 		<div >
-			<img src="../images/car.jpg" class="img-responsive center-block"/>
+			<img id="car" src="../images/carBottom.png" class="center-block"/>
 			<h1 class="text-center"><timer interval="60000" countdown="vmTracker.carCountdown">{{countdown}}m</timer></h1>
 		</div>
 	</div>
