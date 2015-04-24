@@ -17,6 +17,26 @@
             window.speechSynthesis.speak(msg);
         }
 
+        function listen(object, property) {
+            console.log("I'M A RECOGNITION SERVICE");
+            var recognition = new webkitSpeechRecognition();
+            recognition.onstart = function() {
+                console.log('BEGINING RECOGNITION');
+            };
+            recognition.onresult = function(event) {
+                var result = event.results['0']['0'].transcript;
+                console.log('RECOGNIZED: ' + result);
+                object[property] = result;
+                console.log('SAVED: ' + object[property]);
+                $rootScope.$apply();
+
+            };
+            recognition.onend = function() {
+                console.log('ENDING RECOGNITION');
+            };
+            recognition.start();
+        }
+        
         function listenForCommands(vmEntry, vmMain) {
             console.log("I'M A RECOGNITION SERVICE THAT LISTENS CONTINUOUSLY");
             var recognition = new webkitSpeechRecognition();
@@ -45,12 +65,16 @@
                 if ((result.indexOf('departure') != -1) && this.okZephyr) {
                     console.log('DEPARTURE');
                     vmEntry.trackFlight('dep', vmMain);
+                    speak('Thank you, please drive carefully');
+                    this.okZephyr = false;
 
                 }
 
                 if ((result.indexOf('arrival') != -1) && this.okZephyr) {
                     console.log('ARRIVAL');
                     vmEntry.trackFlight('arr', vmMain);
+                    speak('Thank you, please drive carefully');
+                    this.okZephyr = false;
                 }
 
                 if ((result.indexOf('flight') != -1) && this.okZephyr) {
@@ -96,24 +120,5 @@
             recognition.start();
         }
 
-        function listen(object, property) {
-            console.log("I'M A RECOGNITION SERVICE");
-            var recognition = new webkitSpeechRecognition();
-            recognition.onstart = function() {
-                console.log('BEGINING RECOGNITION');
-            };
-            recognition.onresult = function(event) {
-                var result = event.results['0']['0'].transcript;
-                console.log('RECOGNIZED: ' + result);
-                object[property] = result;
-                console.log('SAVED: ' + object[property]);
-                $rootScope.$apply();
-
-            };
-            recognition.onend = function() {
-                console.log('ENDING RECOGNITION');
-            };
-            recognition.start();
-        }
     }
 })();
