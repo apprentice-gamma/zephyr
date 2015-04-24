@@ -10,8 +10,11 @@
 <body ng-app="zephyr" ng-controller="mainController as vmMain">
 	
 	<div class="nav-fixed" ng-include="'./partials/nav_bar.html'"></div>
-	<div class="container-fixed" ui-view>
-		<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+	<div class="dash">
+		
+		<div class="mainDisplay" ui-view>
+			
+		</div>
 	</div>
 
 	<!-- FRAMEWORK -->
