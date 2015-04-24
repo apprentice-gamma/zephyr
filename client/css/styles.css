@@ -19,7 +19,7 @@ h3 {
 }
 
 p {
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .trimTop {
@@ -110,6 +110,14 @@ p {
 /*flight list*/
 .list-group .flightSelect{
   margin-top: 58px;
+  margin-bottom: 2px;
+}
+.list-group-item {
+  padding: 4.5px 10px;
+/*  margin-bottom: -3px;*/
+  background-color: #fff;
+  border: 0px solid #edaa2b;
+  border-bottom: 3px solid #edaa2b;
 }
 .list-group-item:first-child {
   border-top-left-radius: 4px;

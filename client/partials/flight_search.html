@@ -9,13 +9,17 @@
 
 		<div class="list-group flightSelect" ng-hide="flightSearch.arrival">
 			<a ng-href="" ng-click="flightSearch.selectFlight(flight)"class="list-group-item" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | filter:{'carrierFsCode': flightSearch.airline} | limitTo:4:((flightSearch.currentPage - 1) * 4)">
+				<p class="trimBottom">
 			    Flight to {{flight.arrivalAirportFsCode}} departing at {{flight.operationalTimes.publishedDeparture.dateLocal | date:"h:mma"}} <span class="pull-right">{{flight.carrierFsCode}}</span>
+			    </p>
 			</a>
 			<pager total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage" previous-text='<' next-text='>'></pager>
 		</div>
 		<ul class="list-group flightSelect" ng-show="flightSearch.arrival">
 			<a ng-click="flightSearch.selectFlight(flight)" class="list-group-item" ng-class="{'last':$last}" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | filter:{'carrierFsCode': flightSearch.airline} | limitTo:4:((flightSearch.currentPage - 1) * 4)">
+				<p class="trimBottom">
 			    Flight from {{flight.departureAirportFsCode}} arriving at {{flight.operationalTimes.publishedArrival.dateLocal | date:"h:mma"}} <span class="pull-right">{{flight.carrierFsCode}}</span>
+			    </p>
 			</a>
 			<pager total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage" previous-text='<' next-text='>'></pager>
 		</ul>
