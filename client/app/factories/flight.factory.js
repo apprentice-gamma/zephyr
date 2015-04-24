@@ -80,10 +80,6 @@
             return deferred.promise;
         }
 
-        function dataFromFlightList(direction, index) {
-            factory.connectionTime = getConnectionTimeFromFlightList(direction, index);
-
-        }
 
 
         function buildAirport(airport, direction) {

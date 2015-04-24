@@ -1,15 +1,22 @@
-<div class="col-md-12 column" ng-controller="flightSearchController as flightSearch">
+<div class="sideView">
+	<h1>ZEPHYR</h1>
+	<p>This could be some helping text</p>
+</div>
+	
+<div class="mainView" ng-controller="flightSearchController as flightSearch">
+		<h3>Airport Code</h3>
+		<input type="text" class="form-control input-lg" id="inputAirline" ng-model="flightSearch.airline"/>
 
-		<div class="list-group" id="flightSelect" ng-hide="flightSearch.arrival">
-			<a ng-href="" ng-click="flightSearch.flightFactory"class="list-group-item" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
+		<div class="list-group flightSelect" ng-hide="flightSearch.arrival">
+			<a ng-href="" ng-click="flightSearch.selectFlight(flight)"class="list-group-item" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
 			    Flight to {{flight.arrivalAirportFsCode}} departing at {{flight.operationalTimes.publishedDeparture.dateLocal | date:"h:mma"}}
 			</a>
 			<pager total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage"></pager>
 		</div>
-		<ul class="list-group" id="flightSelect" ng-show="flightSearch.arrival">
-			<li  ng-click="flightSearch.flightFactory" class="list-group-item" ng-class="{'last':$last}" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
+		<ul class="list-group flightSelect" ng-show="flightSearch.arrival">
+			<a ng-click="flightSearch.selectFlight(flight)" class="list-group-item" ng-class="{'last':$last}" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
 			    Flight from {{flight.departureAirportFsCode}} arriving at {{flight.operationalTimes.publishedArrival.dateLocal | date:"h:mma"}}
-			</li>
+			</a>
 			<pager total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage"></pager>
 		</ul>
 </div>
