@@ -3,7 +3,7 @@
         .module('zephyr')
         .service('SpeechService', Service);
 
-    function Service($rootScope) {
+    function Service($rootScope, FlightFactory, DirectionFactory) {
         this.speak = speak;
         this.listen = listen;
         this.restart = false;
@@ -36,11 +36,11 @@
             };
             recognition.start();
         }
-        
+
         function listenForCommands(vmEntry, vmMain) {
             console.log("I'M A RECOGNITION SERVICE THAT LISTENS CONTINUOUSLY");
             var recognition = new webkitSpeechRecognition();
-            var startPosition, command;
+            var startPosition, command, date;
             recognition.continuous = true;
             recognition.interimResults = false;
 
@@ -62,6 +62,14 @@
                     console.log("NOT LISTENING...");
                     this.okZephyr = false;
                 }
+
+                if ((result.indexOf('zephyr time') != -1) && this.okZephyr) {
+                    date =  FlightFactory.calculateCountdown(FlightFactory.connectionTime);
+                    speak('Driving ETA to Airport is about' + Math.round(DirectionFactory.drivingMinutes) + ' minutes');
+                    speak('ETA of flight event is ' + Math.round(date) + ' minutes');
+                    this.okZephyr = false;
+                }
+
                 if ((result.indexOf('departure') != -1) && this.okZephyr) {
                     console.log('DEPARTURE');
                     vmEntry.trackFlight('dep', vmMain);

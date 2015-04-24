@@ -8,6 +8,7 @@
             factory.userLocation = undefined;
             factory.latitude = undefined;
             factory.longitude = undefined;
+            factory.drivingMinutes = 0;
             factory.drivingETA = 0;
 
             factory.destLat = "42.216172";
@@ -41,7 +42,8 @@
                     factory.drivingData.duration = routeData.duration.value;
                     deferred.resolve(factory.drivingData);
                     console.log('Driving Data', factory.drivingData);
-                    factory.drivingETA = formatTimeAsUTC(factory.drivingData.duration / 60);
+                    factory.drivingMinutes = factory.drivingData.duration / 60;
+                    factory.drivingETA = formatTimeAsUTC(factory.drivingMinutes);
                 }
 
                 return deferred.promise;

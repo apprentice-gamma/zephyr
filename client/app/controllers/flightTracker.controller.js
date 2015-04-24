@@ -10,16 +10,11 @@
 
 		console.log('Times: ' + FlightFactory.connectionTime + DirectionFactory.drivingETA);
 		console.log('TIME TYPES:' + typeof(FlightFactory.connectionTime) + typeof(DirectionFactory.drivingETA));
-		vm.carCountdown = calculateCountdown(DirectionFactory.drivingETA);
-		vm.flightCountdown = calculateCountdown(FlightFactory.connectionTime);
+		vm.carCountdown = FlightFactory.calculateCountdown(DirectionFactory.drivingETA);
+		vm.flightCountdown = FlightFactory.calculateCountdown(FlightFactory.connectionTime);
 
 		console.log("it's the final countdown",vm.flightCountdown, vm.carCountdown);
 
-		function calculateCountdown(input) {
-			console.log("Calculation made");
-			var d = new Date(input);
-			var now = new Date();
-			return (d.getTime() - now.getTime()) / 60000;
-		}
+		
 	}
 })();

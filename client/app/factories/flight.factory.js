@@ -29,6 +29,7 @@
         factory.getFlightData = getFlightData;
         factory.getConnectionTimeFromFlightList = getConnectionTimeFromFlightList;
         factory.findFlights = findFlights;
+        factory.calculateCountdown = calculateCountdown;
 
         function findFlights(airport, direction) {
             if (direction === "arr") {
@@ -164,6 +165,13 @@
                 factory.flightComponents.airline = flightNumber.slice(0, match.index).trim();
                 factory.flightComponents.number = flightNumber.slice(match.index, flightNumber.length).trim();
             }
+        }
+
+        function calculateCountdown(input) {
+            console.log("Calculation made");
+            var d = new Date(input);
+            var now = new Date();
+            return (d.getTime() - now.getTime()) / 60000;
         }
 
         return factory;
