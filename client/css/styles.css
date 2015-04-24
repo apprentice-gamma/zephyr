@@ -78,6 +78,35 @@ p {
   margin-left: 0px;
 }
 
+.landingBtn{
+  float: left;
+  width: 250px;
+  height: 46px;
+  margin-right: 0px;
+  margin-left: 0px;
+  border: 0px solid black;
+  border-radius: 6px;
+  color: #fff;
+  background-color: #444f5a;
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.landingBtnFirst{
+  float: left;
+  clear: left;
+  width: 250px;
+  height: 46px;
+  margin-right: 10px;
+  margin-left: 0px;
+  border: 0px solid black;
+  border-radius: 6px;
+  color: #fff;
+  background-color: #444f5a;
+  font-size: 24px;
+  font-weight: 300;
+}
+
 /*flight list*/
 .list-group-item:first-child {
   border-top-left-radius: 4px;

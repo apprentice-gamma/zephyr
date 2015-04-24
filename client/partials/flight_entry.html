@@ -16,8 +16,8 @@
 			<input type="text" class="form-control input-lg" id="inputFlight" ng-model="vmFlightEntry.FlightFactory.flight"/>
 		</div>
 		<div class="buttons">
-			<button type="submit" class="btn btn-success btn-lg" ng-click="vmFlightEntry.trackFlight('dep', vmMain)">Departure</button> 
-			<button type="submit" class="btn btn-success btn-lg" ng-click="vmFlightEntry.trackFlight('arr', vmMain)">Arrival</button>
+			<button class="landingBtnFirst" ng-click="vmFlightEntry.trackFlight('dep', vmMain)">Departure</button> 
+			<button class="landingBtn" ng-click="vmFlightEntry.trackFlight('arr', vmMain)">Arrival</button>
 		</div>
 	</form>
 </div>
