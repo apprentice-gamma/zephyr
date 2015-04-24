@@ -5,6 +5,7 @@
 
     function Service($rootScope, $controller, $geolocation, $modal, $log, $state, FlightFactory, DirectionFactory, ActivityFactory) {
         var service = this;
+        service.listening = false;
         service.restart = false;
         service.okZephyr = false;
         service.controllers = {};

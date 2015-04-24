@@ -8,8 +8,12 @@
         vm.trackFlight = trackFlight;
         vm.SpeechService = SpeechService;
         vm.listenCommand = listenCommand;
-        vm.airport = "";
+        vm.airport = "";  
 
+        if (!SpeechService.listening) {
+            SpeechService.listening = true;
+            SpeechService.listenForCommands();
+        }
 
         function trackFlight(direction, controller) {
             if (FlightFactory.flight) {
