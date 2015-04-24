@@ -7,10 +7,7 @@
         vm.FlightFactory = FlightFactory;
         vm.trackFlight = trackFlight;
         vm.SpeechService = SpeechService;
-        vm.listenFlight = listenFlight;
         vm.listenCommand = listenCommand;
-        vm.speechBox = speakBox;
-
         vm.airport = "";
 
 
@@ -31,8 +28,8 @@
                         });
                 });
                 controller.open('sm');
-            } else {
-                // alert('no flight entered');
+
+            } else if(vm.airport) {
                 FlightFactory.findFlights(vm.airport, direction).then(function() {
                     $geolocation.getCurrentPosition({
                         timeout: 60000
@@ -51,16 +48,8 @@
 
         }
 
-        function speakBox(input) {
-            SpeechService.speak(input);
-        }
-
-		function listenFlight() {
-			SpeechService.listen(vm, 'test');
-		}
-
-        function listenCommand(controller) {
-            SpeechService.listenForCommands(vm, controller);
+        function listenCommand() {
+            SpeechService.listenForCommands();
         }
 	}
 })();
