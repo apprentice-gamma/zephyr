@@ -148,7 +148,7 @@
             var deferred = $q.defer();
             $http.get('http://apps.tsa.dhs.gov/MyTSAWebService/GetWaitTimes.ashx?ap=DTW').success(function(data) {
                 var avgWaitTime = 0;
-                console.log('TSA WAIT TIMES:', data);
+                //console.log('TSA WAIT TIMES:', data);
                 for(var x = 0; x < 10; x++) {
                     switch(data.WaitTimes[x].WaitTimeIndex) {
                         case '1': avgWaitTime += 0;
@@ -180,7 +180,7 @@
             var deferred = $q.defer();
 
             $http.get('http://www.flyontime.us/airports/DTW.xml').success(function(data) {
-                console.log(' WAIT TIMES:', data);
+                //console.log(' WAIT TIMES:', data);
                 var shortIndex = data.indexOf('<short_delay>');
                 var shortEnd = data.indexOf('</short_delay>');
                 var shortTime = data.slice((shortIndex) + 13, shortEnd);

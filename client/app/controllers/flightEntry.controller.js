@@ -2,14 +2,20 @@
     angular
         .module('zephyr')
         .controller('flightEntry', flightEntry);
-    function flightEntry(FlightFactory, SpeechService, DirectionFactory, $state, $geolocation, $modalStack, $http) {
+    function flightEntry(FlightFactory, SpeechService, DirectionFactory, AirportFactory, $state, $geolocation, $modalStack, $http) {
         var vm = this;
         vm.FlightFactory = FlightFactory;
         vm.trackFlight = trackFlight;
         vm.SpeechService = SpeechService;
+        vm.AirportFactory = AirportFactory;
+        vm.airportCodes = Object.keys(AirportFactory.airports);
         vm.listenCommand = listenCommand;
-        vm.airport = "";
+        vm.airport = "";  
 
+        // if (!SpeechService.listening) {
+        //     SpeechService.listening = true;
+        //     SpeechService.listenForCommands();
+        // }
 
         function trackFlight(direction, controller) {
             if (FlightFactory.flight) {

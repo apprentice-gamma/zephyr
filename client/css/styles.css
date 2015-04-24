@@ -4,7 +4,6 @@
   color: inherit;
 }
 
-
 h1 { 
     display: block;
     font-size: 40px;
@@ -33,6 +32,16 @@ p {
 }
 .trimBottom {
   margin-bottom: 0px;
+}
+
+.close-button {
+  margin-bottom: -55px;
+  margin-right: 10px;
+}
+
+.close-button a {
+  color: white;
+  text-decoration: none;
 }
 
 .dash {
@@ -190,4 +199,9 @@ p {
   color: #999;
   cursor: not-allowed;
   background-color: #fff;
+}
+
+.delay-info {
+  margin-top: -10px;
+  font-size: 19px;
 }
