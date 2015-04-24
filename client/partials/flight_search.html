@@ -1,19 +1,15 @@
 <div class="col-md-12 column" ng-controller="flightSearchController as flightSearch">
-	<h3>{{flightSearch.msg}}</h3>
 
 		<div class="list-group" id="flightSelect" ng-hide="flightSearch.arrival">
-			<h1>If dep is called</h1>
 			<a ng-href="" ng-click="flightSearch.flightFactory"class="list-group-item" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
-			    Flight to {{flight.arrivalAirportFsCode}} departing at {{flight.operationalTimes.publishedDeparture}}
+			    Flight to {{flight.arrivalAirportFsCode}} departing at {{flight.operationalTimes.publishedDeparture.dateLocal | date:"h:mma"}}
 			</a>
 			<pager total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage"></pager>
 		</div>
-		<div class="list-group" id="flightSelect" ng-show="flightSearch.arrival">
-			<h1>If arr is called</h1>
-			<a ng-href="" ng-click="flightSearch.flightFactory"class="list-group-item" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
-			    Flight from {{flight.departureAirportFsCode}} arriving at {{flight.operationalTimes.publishedArrival}}
-			</a>
-			
+		<ul class="list-group" id="flightSelect" ng-show="flightSearch.arrival">
+			<li  ng-click="flightSearch.flightFactory" class="list-group-item" ng-class="{'last':$last}" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
+			    Flight from {{flight.departureAirportFsCode}} arriving at {{flight.operationalTimes.publishedArrival.dateLocal | date:"h:mma"}}
+			</li>
 			<pager total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage"></pager>
-		</div>
+		</ul>
 </div>
