@@ -1,18 +1,44 @@
 <div class="col-md-12 column" ng-controller="flightSearchController as flightSearch">
 	<h3>{{flightSearch.msg}}</h3>
-
-		<div class="list-group" id="flightSelect" ng-hide="flightSearch.arrival">
-			<h1>If dep is called</h1>
-			<a class="list-group-item" ng-click="flightSearch.selectFlight(flight)" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
-			    Flight to {{flight.arrivalAirportFsCode}} departing at {{flight.operationalTimes.publishedDeparture}}
-			</a>
-			<pagination total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage" items-per-page="flightSearch.itemsPerPage" class="pagination-sm" boundary-links="true"></pagination>
-		</div>
-		<div class="list-group" id="flightSelect" ng-show="flightSearch.arrival">
-			<h1>If arr is called</h1>
-			<a class="list-group-item" ng-click="flightSearch.selectFlight(flight)" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
-			    Flight from {{flight.departureAirportFsCode}} arriving at {{flight.operationalTimes.publishedArrival}}
-			</a>
-			<pagination total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage" items-per-page="flightSearch.itemsPerPage" class="pagination-sm" boundary-links="true"></pagination>
-		</div>
+	<div class="list-group" id="flightSelect" ng-hide="flightSearch.arrival">
+		<h1>If dep is called</h1>
+		<table class="table table-hover table-condensed">
+			<thead>
+				<tr>
+					<th>Flight</th>
+					<th>Dest.</th>
+					<th>Time</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-click="flightSearch.selectFlight(flight)" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
+					<td>{{flight.carrierFsCode}} {{flight.flightNumber}}</td>
+					<td>{{flight.departureAirportFsCode}}</td>
+					<td>{{flight.operationalTimes.publishedArrival}}</td>
+				</tr>
+				
+			</tbody>
+		</table>
+		<pagination total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage" items-per-page="flightSearch.itemsPerPage" class="pagination-sm" boundary-links="true"></pagination>
+	</div>
+	<div class="list-group" id="flightSelect" ng-show="flightSearch.arrival">
+		<h1>If arr is called</h1>
+		<table class="table table-hover table-condensed">
+			<thead>
+				<tr>
+					<th>Flight</th>
+					<th>Dest.</th>
+					<th>Time</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-click="flightSearch.selectFlight(flight)" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
+					<td>{{flight.carrierFsCode}} {{flight.flightNumber}}</td>
+					<td>{{flight.arrivalAirportFsCode}}</td>
+					<td>{{flight.operationalTimes.publishedDeparture}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<pagination total-items="flightSearch.flightFactory.flightsAtAirport.length" ng-model="flightSearch.currentPage" items-per-page="flightSearch.itemsPerPage" class="pagination-sm" boundary-links="true"></pagination>
+	</div>
 </div>
