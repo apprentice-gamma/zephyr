@@ -24,7 +24,7 @@
       "KC" : "Air Astana",
       "UU" : "Air Austral",
       "BT" : "Air Baltic",
-      "AB" : "Air Berlin"
+      "AB" : "Air Berlin",
       "BP" : "Air Botswana",
       "TY" : "Air Caledonie",
       "AC" : "Air Canada",
@@ -90,7 +90,7 @@
       "CI" : "China Airlines",
       "CK" : "China Cargo Airlines",
       "MU" : "China Eastern",
-      "CF" : "China Postal Airlines"
+      "CF" : "China Postal Airlines",
       "CZ" : "China Southern Airlines",
       "WX" : "CityJet",
       "MN" : "Comair",
@@ -247,7 +247,7 @@
       "WF" : "Wideroe",
       "MF" : "Xiamen Airlines",
       "IY" : "Yemenia"
-    }
+    };
 
     return factory;
   }

@@ -3,7 +3,7 @@
 		.module('zephyr')
 		.controller('flightSearchController', flightSearch);
 
-	function flightSearch(FlightFactory, AirportFactory, $scope, $state) {
+	function flightSearch(FlightFactory, AirportFactory, AirlineFactory, $scope, $state) {
 		var vm = this;
 		vm.flightFactory = FlightFactory;
 		vm.airportFactory = AirportFactory;
@@ -17,8 +17,11 @@
 		vm.getAirportName = getAirportName;
 
 		function getAirportName(airportCode) {
-			console.log(AirportFactory.airports[airportCode]);
 			return AirportFactory.airports[airportCode];
+		}
+
+		function getAirlineName(airlineCode) {
+			return AirlineFactory.arlines[airlineCode];
 		}
 
 		function selectFlight(flight) {
