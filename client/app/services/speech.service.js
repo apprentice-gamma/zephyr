@@ -3,7 +3,7 @@
         .module('zephyr')
         .service('SpeechService', Service);
 
-    function Service($rootScope, FlightFactory, DirectionFactory) {
+    function Service($rootScope, $controller, $geolocation, $modal, $log, FlightFactory, DirectionFactory, ActivityFactory) {
         this.speak = speak;
         this.listen = listen;
         this.restart = false;
@@ -37,10 +37,28 @@
             recognition.start();
         }
 
-        function listenForCommands(vmEntry, vmMain) {
+        function listenForCommands() {
             console.log("I'M A RECOGNITION SERVICE THAT LISTENS CONTINUOUSLY");
             var recognition = new webkitSpeechRecognition();
             var startPosition, command, date;
+
+            var vmEntry = $controller('flightEntry');
+            var vmMain = $controller('mainController', {
+                '$scope': $rootScope, 
+                '$geolocation': $geolocation, 
+                '$modal': $modal, 
+                '$log' : $log, 
+                'DirectionFactory' : DirectionFactory, 
+                'FlightFactory' : FlightFactory
+            });
+            var vmTracker = $controller('flightTracker', {
+                'FlightFactory': FlightFactory, 
+                'ActivityFactory' : ActivityFactory, 
+                'DirectionFactory' : DirectionFactory, 
+                '$scope' : $rootScope
+            });
+
+            console.log(vmTracker);
             recognition.continuous = true;
             recognition.interimResults = false;
 
