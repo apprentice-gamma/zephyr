@@ -23,13 +23,37 @@
 
         factory.airportBase = "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/";
         factory.airportSuffix = "&numHours=5&maxFlights=25";
+        
+        factory.idBase = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/";
 
 
         //methods
         factory.getFlightData = getFlightData;
         factory.getConnectionTimeFromFlightList = getConnectionTimeFromFlightList;
         factory.findFlights = findFlights;
+        factory.getFlightByID = getFlightByID;
         factory.calculateCountdown = calculateCountdown;
+
+        function getFlightByID() {
+            if (factory.flightID) {
+                var url = factory.idBase + factory.flightID + factory.suffix;
+                
+                var direction = 'dep';
+                if (factory.arrival)
+                    direction = 'arr';
+                
+                $http.jsonp(url).
+                success(function(data, status, headers, config) {
+                    deferred.resolve(data);
+                    console.log(data);
+                    factory.connectionTime = getConnectionTimeFromFlightData(direction);
+                })
+                .error(function() {
+                    console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
+                    deferred.reject('ERROR DEFERRING');
+                });
+            }
+        }
 
         function findFlights(airport, direction) {
             if (direction === "arr") {
@@ -46,10 +70,10 @@
                 console.log(data);
                 factory.flightsAtAirport = data.flightStatuses;
             })
-                .error(function() {
-                    console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
-                    deferred.reject('ERROR DEFERRING');
-                });
+            .error(function() {
+                console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
+                deferred.reject('ERROR DEFERRING');
+            });
 
             return deferred.promise;
 
