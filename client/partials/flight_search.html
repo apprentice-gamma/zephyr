@@ -13,7 +13,7 @@
 				<tr ng-click="flightSearch.selectFlight(flight)" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
 					<td tooltip="{{flightSearch.getAirlineName(flight.carrierFsCode)}}" tooltip-append-to-body="true">{{flight.carrierFsCode}} {{flight.flightNumber}}</td>
 					<td tooltip="{{flightSearch.getAirportName(flight.departureAirportFsCode)}}" tooltip-append-to-body="true">{{flight.departureAirportFsCode}}</td>
-					<td>{{flight.operationalTimes.publishedArrival}}</td>
+					<td>{{flight.operationalTimes.publishedArrival.dateLocal | date : 'EEE, MMM dd @ h:mma'}}</td>
 				</tr>
 			</tbody>	
 
@@ -21,7 +21,7 @@
 				<tr ng-click="flightSearch.selectFlight(flight)" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">
 					<td tooltip="{{flightSearch.getAirlineName(flight.carrierFsCode)}}" tooltip-append-to-body="true">{{flight.carrierFsCode}} {{flight.flightNumber}}</td>
 					<td tooltip="{{flightSearch.getAirportName(flight.arrivalAirportFsCode)}}" tooltip-append-to-body="true">{{flight.arrivalAirportFsCode}}</td>
-					<td>{{flight.operationalTimes.publishedDeparture}}</td>
+					<td>{{flight.operationalTimes.publishedDeparture.dateLocal | date: 'EEE, MMM dd @ h:mma'}}</td>
 				</tr>
 			</tbody>
 		</table>

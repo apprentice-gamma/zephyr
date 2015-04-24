@@ -15,13 +15,14 @@
 
 		vm.selectFlight = selectFlight;
 		vm.getAirportName = getAirportName;
+		vm.getAirlineName = getAirlineName;
 
 		function getAirportName(airportCode) {
 			return AirportFactory.airports[airportCode];
 		}
 
 		function getAirlineName(airlineCode) {
-			return AirlineFactory.arlines[airlineCode];
+			return AirlineFactory.airlines[airlineCode];
 		}
 
 		function selectFlight(flight) {
