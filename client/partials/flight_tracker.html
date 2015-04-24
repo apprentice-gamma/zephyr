@@ -3,6 +3,7 @@
 		<div class="jumbotron well">
 			<img src="../images/plane.jpg" class="img-responsive center-block"/>
 			<h1 class="text-center"><timer interval="60000" countdown="vmTimer.flightCountdown">{{countdown}}m</timer></h1>
+			<h5 class="text-center ng-if="vmTimer.showWait">Wait Time: {{vmTimer.FlightFactory.tsaTime}} (tsa) | {{vmTimer.FlightFactory.avgTime}} (avg)</h5>
 		</div>
 	</div>
 	<div class="col-md-6 column jumbo-fixed">

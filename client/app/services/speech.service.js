@@ -103,21 +103,17 @@
             if ((result.indexOf('flight') != -1) && service.okZephyr) {
                 startPosition = (result.indexOf('flight') + 6);
                 command = result.slice(startPosition, result.length);
-                if (confidence >= 0.88){
-                    FlightFactory.flight = command;
-                    speak('Thank you, please confirm your flight');
-                    service.okZephyr = false;
-                }
+                FlightFactory.flight = command;
+                speak('Thank you, please confirm your flight');
+                service.okZephyr = false;
             }
 
             if ((result.indexOf('airport') != -1) && service.okZephyr) {
                 startPosition = (result.indexOf('airport') + 6);
                 command = result.slice(startPosition, result.length);
-                if (confidence >= 0.88){
-                    service.controllers.vmEntry.airport = command;
-                    speak('Thank you, please confirm your airport');
-                    service.okZephyr = false;
-                }
+                service.controllers.vmEntry.airport = command;
+                speak('Thank you, please confirm your airport');
+                service.okZephyr = false;
             }
 
 

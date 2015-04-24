@@ -2,7 +2,7 @@
     angular
         .module('zephyr')
         .controller('flightEntry', flightEntry);
-    function flightEntry(FlightFactory, SpeechService, DirectionFactory, $state, $geolocation, $modalStack) {
+    function flightEntry(FlightFactory, SpeechService, DirectionFactory, $state, $geolocation, $modalStack, $http) {
         var vm = this;
         vm.FlightFactory = FlightFactory;
         vm.trackFlight = trackFlight;
@@ -13,7 +13,7 @@
 
         function trackFlight(direction, controller) {
             if (FlightFactory.flight) {
-                SpeechService.speak(FlightFactory.flight);
+                SpeechService.speak('Tracking Flight' + FlightFactory.flight);
                 FlightFactory.getFlightData(direction).then(function() {
                     $geolocation.getCurrentPosition({
                         timeout: 60000
@@ -22,8 +22,12 @@
                             console.log("MY POSITION:", position);
                             DirectionFactory.userLocation = position;
                             DirectionFactory.getDistance().then(function() {
-                                $state.go('track');
-                                $modalStack.dismissAll('All Loaded Up!');
+                                FlightFactory.getTSAWaitTime().then(function() {
+                                    FlightFactory.getAvgWaitTime().then(function() {
+                                        $state.go('track');
+                                        $modalStack.dismissAll('All Loaded Up!');
+                                    });
+                                });
                             });
                         });
                 });
@@ -31,6 +35,7 @@
 
             } else if(vm.airport) {
                 FlightFactory.findFlights(vm.airport, direction).then(function() {
+                    SpeechService.speak('Searching Airport Code  ' + vm.airport);
                     $geolocation.getCurrentPosition({
                         timeout: 60000
                     })

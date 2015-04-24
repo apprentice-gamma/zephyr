@@ -7,6 +7,7 @@
 		var vm = this;
 		var second = 1000;
 		var minute = second * 60;
+		var showWait = false;
 
 		vm.FlightFactory = FlightFactory;
 		vm.ActivityFactory = ActivityFactory;
@@ -15,6 +16,7 @@
 
 		if ($state.is('track')) {
 			setInterval(intervalFunction, 5 * minute);
+			showWait = (FlightFactory.tsaTime && FlightFactory.avgTime);
 		}
 
 		function intervalFunction(){

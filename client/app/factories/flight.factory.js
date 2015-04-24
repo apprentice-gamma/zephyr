@@ -7,6 +7,8 @@
         var factory = {};
         factory.flight = "dl2024";
         factory.connectionTime = 0;
+        factory.tsaTime = undefined;
+        factory.avgTime = undefined;
 
         factory.flightComponents = {};
         factory.flightID = undefined;
@@ -26,6 +28,9 @@
         factory.getFlightData = getFlightData;
         factory.findFlights = findFlights;
         factory.getFlightByID = getFlightByID;
+        factory.getTSAWaitTime = getTSAWaitTime;
+        factory.getAvgWaitTime = getAvgWaitTime;
+        factory.calculateWaitTimes = calculateWaitTimes;
         factory.getConnectionTimeFromFlightList = getConnectionTimeFromFlightList;
         factory.calculateCountdown = calculateCountdown;
 
@@ -79,14 +84,12 @@
         function getFlightByID() {
             if (factory.flightID) {
                 var url = factory.idBase + factory.flightID + factory.suffix;
-
                 var direction = 'dep';
                 if (factory.arrival)
                     direction = 'arr';
 
                 $http.jsonp(url).
                 success(function(data, status, headers, config) {
-                    deferred.resolve(data);
                     console.log(data);
                     factory.flightStatus = data.flightStatus;
                     factory.flightTimes = data.flightStatus.operationalTimes;
@@ -94,9 +97,73 @@
                 })
                     .error(function() {
                         console.log('ERROR RETRIEVING FLIGHT JSONP DATA FROM ID');
-                        deferred.reject('ERROR DEFERRING');
                     });
             }
+        }
+
+        function getTSAWaitTime() {
+            var deferred = $q.defer();
+            $http.get('http://apps.tsa.dhs.gov/MyTSAWebService/GetWaitTimes.ashx?ap=DTW').success(function(data) {
+                var avgWaitTime = 0;
+                console.log('TSA WAIT TIMES:', data);
+                for(var x = 0; x < 10; x++) {
+                    switch(data.WaitTimes[x].WaitTimeIndex) {
+                        case '1': avgWaitTime += 0;
+                            break;
+                        case '2': avgWaitTime += 10;
+                            break;
+                        case '3': avgWaitTime += 20;
+                            break;
+                        case '4': avgWaitTime += 30;
+                            break;
+                        case '5': avgWaitTime += 40;
+                            break;
+                        default: avgWaitTime += 0;
+                    }
+                }
+                avgWaitTime = avgWaitTime / 10;
+                avgWaitTime = Math.round((avgWaitTime / 10)) * 10;
+                factory.tsaTime = avgWaitTime;
+                deferred.resolve(avgWaitTime);
+            })
+            .error(function() {
+                console.log("ERROR FETCHING WAIT TIME DATA");
+                deferred.reject('WAIT TIME ERROR');
+            });
+            return deferred.promise;
+        }
+
+        function getAvgWaitTime() {
+            var deferred = $q.defer();
+
+            $http.get('http://www.flyontime.us/airports/DTW.xml').success(function(data) {
+                console.log(' WAIT TIMES:', data);
+                var shortIndex = data.indexOf('<short_delay>');
+                var shortEnd = data.indexOf('</short_delay>');
+                var shortTime = data.slice((shortIndex) + 13, shortEnd);
+
+                var longIndex = data.indexOf('<long_delay>');
+                var longEnd = data.indexOf('</long_delay>');
+                var longTime = data.slice((longIndex) + 12, longEnd);
+
+                var avgWaitTime = Math.round(((Number(shortTime) + Number(longTime)) / 2));
+                factory.avgTime = avgWaitTime;
+                deferred.resolve(avgWaitTime);
+            }).error(function() {
+                console.log('ERROR CONNECTING TO FLYONTIME');
+                deferred.resolve('WAIT TIME ERROR');
+            });
+
+            return deferred.promise;
+        }
+
+        function calculateWaitTimes() {
+            var deferred = $q.defer();
+            getTSAWaitTime().then(function() {
+                getAvgWaitTime().then(function() {
+
+                });
+            });
         }
 
         function dataFromFlightList(direction, index) {
