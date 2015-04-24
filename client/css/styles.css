@@ -135,6 +135,11 @@ p {
 .timer {
   font-size: 70px;
 }
+.timer-warning {
+  font-size: 70px;
+  font-weight: bold;
+  color: #d20f06;
+}
 .plane {
   border-right: 2px solid #fff;
 }
