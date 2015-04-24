@@ -1,4 +1,3 @@
-
 (function() {
     angular
         .module('zephyr')
@@ -7,83 +6,32 @@
     function FlightFactory($http, $q) {
         var factory = {};
         factory.flight = "dl2024";
+        factory.connectionTime = 0;
 
         factory.flightComponents = {};
         factory.flightID = undefined;
         factory.flightStatus = {};
         factory.flightTimes = {};
-
-        factory.connectionTime = 0;
-
         factory.flightsAtAirport = [];
-        factory.arrival = false;
 
-        factory.flightBase = "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/";
+        factory.arrival = false;
         factory.suffix = "?callback=JSON_CALLBACK&appId=588e049b&appKey=f9e4c706444bfc87888b78ddb64f00c8&utc=false";
 
+        factory.flightBase = "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/";
+        factory.idBase = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/";
         factory.airportBase = "https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/";
         factory.airportSuffix = "&numHours=5&maxFlights=25";
-        
-        factory.idBase = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/";
-
 
         //methods
         factory.getFlightData = getFlightData;
-        factory.getConnectionTimeFromFlightList = getConnectionTimeFromFlightList;
         factory.findFlights = findFlights;
         factory.getFlightByID = getFlightByID;
+        factory.getConnectionTimeFromFlightList = getConnectionTimeFromFlightList;
         factory.calculateCountdown = calculateCountdown;
-
-        function getFlightByID() {
-            if (factory.flightID) {
-                var url = factory.idBase + factory.flightID + factory.suffix;
-                
-                var direction = 'dep';
-                if (factory.arrival)
-                    direction = 'arr';
-                
-                $http.jsonp(url).
-                success(function(data, status, headers, config) {
-                    deferred.resolve(data);
-                    console.log(data);
-                    factory.flightStatus = data.flightStatus;
-                    factory.flightTimes = data.flightStatus.operationalTimes;
-                    factory.connectionTime = getConnectionTimeFromFlightData(direction);
-                })
-                .error(function() {
-                    console.log('ERROR RETRIEVING FLIGHT JSONP DATA FROM ID');
-                    deferred.reject('ERROR DEFERRING');
-                });
-            }
-        }
-
-        function findFlights(airport, direction) {
-            if (direction === "arr") {
-                factory.arrival = true;
-            }
-
-            var url = buildAirport(airport, direction);
-            console.log(url);
-            var deferred = $q.defer();
-
-            $http.jsonp(url).
-            success(function(data, status, headers, config) {
-                deferred.resolve(data);
-                console.log(data);
-                factory.flightsAtAirport = data.flightStatuses;
-            })
-            .error(function() {
-                console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
-                deferred.reject('ERROR DEFERRING');
-            });
-
-            return deferred.promise;
-
-        }
 
         function getFlightData(direction) {
             parseFlightNumber(factory.flight);
-            var url = buildFlight(direction);
+            var url = buildFlightURL(direction);
             console.log(url);
             var deferred = $q.defer();
 
@@ -104,12 +52,59 @@
             return deferred.promise;
         }
 
+        function findFlights(airport, direction) {
+            if (direction === "arr") {
+                factory.arrival = true;
+            }
+
+            var url = buildAirportURL(airport, direction);
+            console.log(url);
+            var deferred = $q.defer();
+
+            $http.jsonp(url).
+            success(function(data, status, headers, config) {
+                deferred.resolve(data);
+                console.log(data);
+                factory.flightsAtAirport = data.flightStatuses;
+            })
+                .error(function() {
+                    console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
+                    deferred.reject('ERROR DEFERRING');
+                });
+
+            return deferred.promise;
+
+        }
+
+        function getFlightByID() {
+            if (factory.flightID) {
+                var url = factory.idBase + factory.flightID + factory.suffix;
+
+                var direction = 'dep';
+                if (factory.arrival)
+                    direction = 'arr';
+
+                $http.jsonp(url).
+                success(function(data, status, headers, config) {
+                    deferred.resolve(data);
+                    console.log(data);
+                    factory.flightStatus = data.flightStatus;
+                    factory.flightTimes = data.flightStatus.operationalTimes;
+                    factory.connectionTime = getConnectionTimeFromFlightData(direction);
+                })
+                    .error(function() {
+                        console.log('ERROR RETRIEVING FLIGHT JSONP DATA FROM ID');
+                        deferred.reject('ERROR DEFERRING');
+                    });
+            }
+        }
+
         function dataFromFlightList(direction, index) {
             factory.connectionTime = getConnectionTimeFromFlightList(direction, index);
 
         }
 
-        function buildAirport(airport, direction) {
+        function buildAirportURL(airport, direction) {
             var url = factory.airportBase;
             url += airport + '/';
             url += direction + '/';
@@ -117,6 +112,16 @@
             url += factory.suffix;
             url += factory.airportSuffix;
             console.log('AIRPORT SEARCH URL:' + url);
+
+            return url;
+        }
+
+        function buildFlightURL(direction) {
+            var url = factory.flightBase;
+            url += factory.flightComponents.airline + '/' + factory.flightComponents.number + '/';
+            url += direction + '/';
+            url += getTodayAsString(false);
+            url += factory.suffix;
 
             return url;
         }
@@ -150,17 +155,6 @@
                 factory.connectionTime = flight.operationalTimes.scheduledGateDeparture.dateUtc;
             }
 
-        }
-
-
-        function buildFlight(direction) {
-            var url = factory.flightBase;
-            url += factory.flightComponents.airline + '/' + factory.flightComponents.number + '/';
-            url += direction + '/';
-            url += getTodayAsString(false);
-            url += factory.suffix;
-
-            return url;
         }
 
         function findAirports(airports) {
