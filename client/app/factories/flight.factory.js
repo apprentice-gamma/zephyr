@@ -45,10 +45,6 @@
                 deferred.resolve(data);
                 console.log(data);
                 factory.flightsAtAirport = data.flightStatuses;
-                // factory.flightStatus = data.flightStatuses[0];
-                // factory.flightTimes = data.flightStatuses[0].operationalTimes;
-                // factory.connectionTime = getConnectionTime(direction);
-                // console.log('factory.connectionTime', factory.connectionTime);
             })
                 .error(function() {
                     console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
@@ -72,7 +68,6 @@
                 factory.flightStatus = data.flightStatuses[0];
                 factory.flightTimes = data.flightStatuses[0].operationalTimes;
                 factory.connectionTime = getConnectionTimeFromFlightData(direction);
-                console.log('factory.connectionTime', factory.connectionTime);
             })
                 .error(function() {
                     console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
@@ -110,13 +105,10 @@
             if (needHour) {
                 string += "/" + d.getHours();
             }
-            console.log(string);
             return string;
         }
 
         function getConnectionTimeFromFlightData(direction) {
-            console.log('direction in getConTime', direction);
-            console.log('factory.flightTimes -------', factory.flightTimes);
             if (direction === "dep") {
                 return factory.flightTimes.scheduledGateDeparture.dateUtc;
             } else if (direction === "arr") {
@@ -126,7 +118,6 @@
         }
 
         function getConnectionTimeFromFlightList(flight) {
-            console.log('FLIGHT IN FACTORY', flight);
             if (factory.arrival) {
                 factory.connectionTime = flight.operationalTimes.flightPlanPlannedArrival.dateUtc;
             } else {

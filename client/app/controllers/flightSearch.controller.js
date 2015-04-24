@@ -15,8 +15,6 @@
 		vm.selectFlight = selectFlight;
 
 		function selectFlight(flight) {
-			//alert("I'm SELECTED!");
-			console.log('FLIGHT IN CONTROLLER', flight);
 			FlightFactory.getConnectionTimeFromFlightList(flight);
 			$state.go('track');	
 		}

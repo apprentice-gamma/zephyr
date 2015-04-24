@@ -16,6 +16,7 @@
 
         function speak(message) {
             console.log("I'M A SPEECH SERVICE");
+            console.log("I WILL SAY: " + message);
             var msg = new SpeechSynthesisUtterance(message);
             window.speechSynthesis.speak(msg);
         }
@@ -67,7 +68,7 @@
                 service.okZephyr = true;
             }
             
-            if ((result.indexOf('cancel') != -1) && (confidence >= 0.75)) {
+            if ((result.indexOf('cancel') != -1) && (confidence >= 0.5)) {
                 console.log("NOT LISTENING...");
                 service.okZephyr = false;
             }
@@ -121,13 +122,12 @@
 
 
             console.log('RECOGNIZED: ', result);
-            console.log('RESULTS', data.results);
             $rootScope.$apply();
         }
 
         // EVENT HANDLERS
         function handleStart() {
-            console.log("Beginning Recognition");
+            console.log("BEGINNING Recognition");
             service.restart = false;
 
         }
