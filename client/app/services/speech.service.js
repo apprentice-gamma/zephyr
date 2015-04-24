@@ -81,8 +81,8 @@
 
             if ((result.indexOf('zephyr time') != -1) && service.okZephyr) {
                 date =  FlightFactory.calculateCountdown(FlightFactory.connectionTime);
-                speak('Driving ETA to Airport is about' + Math.round(DirectionFactory.drivingMinutes) + ' minutes');
-                speak('ETA of flight event is about' + Math.round(date) + ' minutes');
+                speak('Driving ETA to Airport is about ' + Math.round(DirectionFactory.drivingMinutes) + ' minutes');
+                speak('ETA of flight event is about ' + Math.round(date) + ' minutes');
                 service.okZephyr = false;
             }
 

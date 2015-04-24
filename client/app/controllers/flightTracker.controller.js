@@ -3,7 +3,7 @@
 		.module('zephyr')
 		.controller('flightTracker', flightTracker);
 
-	function flightTracker(FlightFactory, ActivityFactory, DirectionFactory, $scope, $state) {
+	function flightTracker(FlightFactory, ActivityFactory, DirectionFactory, SpeechService, $scope, $state) {
 		var vm = this;
 		var second = 1000;
 		var minute = second * 60;
@@ -24,6 +24,11 @@
 			if (vm.flightCountdown <= 30) {
 				flightSoon = true;
 			}
+
+			if(vm.carCountdown > 0)
+             	SpeechService.speak('Driving ETA to Airport is about ' + Math.round(vm.carCountdown) + ' minutes');
+            if(vm.flightCountdown > 0)
+             	SpeechService.speak('ETA of flight event is about ' + Math.round(vm.flightCountdown) + ' minutes');
 		}
 
 		function changeTimerClass(){
