@@ -4,17 +4,18 @@
 </div>
 	
 <div class="mainView" ng-controller="flightTracker as vmTracker">
-	<div class="col-md-6 column jumbo-fixed">
+	<div class="col-md-6 column jumbo-fixed plane">
 		<div >
-			<img src="../images/plane.jpg" class="img-responsive center-block"/>
-			<h1 class="text-center"><timer interval="60000" countdown="vmTracker.flightCountdown">{{countdown}}m</timer></h1>
-			<h5 class="text-center" ng-if="vmTracker.FlightFactory.showWait">Check-in Delay<br/> {{vmTracker.FlightFactory.tsaTime}} min (tsa) | {{vmTracker.FlightFactory.avgTime}} min (avg)</h5>
+			<img id="plane" src="../images/planeBottom.png" class="center-block"/>
+			<h1 class="text-center"><timer interval="60000" countdown="vmTracker.flightCountdown"><span class="timer">{{countdown}}</span>min</timer></h1>
+			<p class="text-center" ng-if="vmTracker.FlightFactory.arrival">Wait Time: {{vmTracker.FlightFactory.tsaTime}} (tsa) | {{vmTracker.FlightFactory.avgTime}} (avg)</p>
 		</div>
 	</div>
 	<div class="col-md-6 column jumbo-fixed">
 		<div >
-			<img src="../images/car.jpg" class="img-responsive center-block"/>
-			<h1 class="text-center"><timer interval="60000" countdown="vmTracker.carCountdown">{{countdown}}m</timer></h1>
+			<img id="car" src="../images/carBottom.png" class="center-block"/>
+			<h1 class="text-center"><timer interval="60000" countdown="vmTracker.carCountdown"><span class="timer">{{countdown}}</span>min</timer></h1>
+			<p class="text-center">to {{vmTracker.DirectionFactory.airport.name}}</p>
 		</div>
 	</div>
 </div>

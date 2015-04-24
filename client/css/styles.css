@@ -137,6 +137,18 @@ p {
   margin-bottom: 10px;
 }
 
+/*tracker*/
+.timer {
+  font-size: 70px;
+}
+.timer-warning {
+  font-size: 70px;
+  font-weight: bold;
+  color: #d20f06;
+}
+.plane {
+  border-right: 2px solid #fff;
+}
 
 /*pager*/
 .pager {
@@ -178,5 +190,4 @@ p {
   color: #999;
   cursor: not-allowed;
   background-color: #fff;
->>>>>>> master
 }

@@ -25,11 +25,13 @@
                                 FlightFactory.getTSAWaitTime().then(function(answer) {
 
                                     FlightFactory.getAvgWaitTime().then(function(answer) {
+
                                         $state.go('track');
                                         FlightFactory.showWait = true;
                                         $modalStack.dismissAll('All Loaded Up!');
                                     }, function(error) {
                                         $state.go('track');
+
                                     });
 
                                 }, function(error) {
@@ -38,7 +40,7 @@
                                         $state.go('track');
                                         $modalStack.dismissAll('All Loaded Up!');
                                     }, function(error) {
-                                        $state.go('track');
+
                                     });
                                 });
 
@@ -73,5 +75,5 @@
         function listenCommand() {
             SpeechService.listenForCommands();
         }
-	}
+    }
 })();
