@@ -9,12 +9,14 @@
         factory.connectionTime = 0;
         factory.tsaTime = undefined;
         factory.avgTime = undefined;
+        factory.showWait = false;
 
         factory.flightComponents = {};
         factory.flightID = undefined;
         factory.flightStatus = {};
         factory.flightTimes = {};
         factory.flightsAtAirport = [];
+        factory.airports = [];
 
         factory.arrival = false;
         factory.suffix = "?callback=JSON_CALLBACK&appId=588e049b&appKey=f9e4c706444bfc87888b78ddb64f00c8&utc=false";
@@ -25,14 +27,57 @@
         factory.airportSuffix = "&numHours=5&maxFlights=25";
 
         //methods
+        factory.getAirportFromFlight = getAirportFromFlight;
+        factory.getAirportFromSearch = getAirportFromSearch;
         factory.getFlightData = getFlightData;
         factory.findFlights = findFlights;
         factory.getFlightByID = getFlightByID;
         factory.getTSAWaitTime = getTSAWaitTime;
         factory.getAvgWaitTime = getAvgWaitTime;
-        factory.calculateWaitTimes = calculateWaitTimes;
         factory.getConnectionTimeFromFlightList = getConnectionTimeFromFlightList;
         factory.calculateCountdown = calculateCountdown;
+
+        function getAirportFromFlight() {
+            var airport = {};
+            var direction = "departureAirportFsCode";
+            if (factory.arrival)
+                direction = "arrivalAirportFsCode";
+
+            console.log(factory.flightStatus);
+
+            for (var x = 0; x < factory.airports.length; x++) {
+                if(factory.airports[x].fs === factory.flightStatus[direction]){
+                    //This is the airport
+                    airport.fsCode = factory.airports[x].fs;
+                    airport.name = factory.airports[x].name;
+                    airport.latitude = factory.airports[x].latitude;
+                    airport.longitude = factory.airports[x].longitude;
+                    console.log('FLIGHT AIRPORT MATCH FOUND');
+                }
+            }
+
+            return airport;
+        }
+
+        function getAirportFromSearch(airportFsCode) {
+            var airport = {};
+            var direction = "departureAirportFsCode";
+            if (factory.arrival)
+                direction = "arrivalAirportFsCode";
+
+            for (var x = 0; x < factory.airports.length; x++) {
+                if(factory.airports[x].fs === airportFsCode){
+                    //This is the airport
+                    airport.fsCode = factory.airports[x].fs;
+                    airport.name = factory.airports[x].name;
+                    airport.latitude = factory.airports[x].latitude;
+                    airport.longitude = factory.airports[x].longitude;
+                    console.log('SEARCH AIRPORT MATCH FOUND');
+                }
+            }
+
+            return airport;
+        }
 
         function getFlightData(direction) {
             parseFlightNumber(factory.flight);
@@ -48,6 +93,7 @@
                 factory.flightID = data.flightStatuses[0].flightId;
                 factory.flightTimes = data.flightStatuses[0].operationalTimes;
                 factory.connectionTime = getConnectionTimeFromFlightData(direction);
+                factory.airports = data.appendix.airports;
             })
                 .error(function() {
                     console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
@@ -67,6 +113,7 @@
                 deferred.resolve(data);
                 console.log(data);
                 factory.flightsAtAirport = data.flightStatuses;
+                factory.airports = data.appendix.airports;
             })
                 .error(function() {
                     console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
@@ -152,16 +199,6 @@
 
             return deferred.promise;
         }
-
-        function calculateWaitTimes() {
-            var deferred = $q.defer();
-            getTSAWaitTime().then(function() {
-                getAvgWaitTime().then(function() {
-
-                });
-            });
-        }
-
 
         function buildAirportURL(airport, direction) {
             var url = factory.airportBase;
