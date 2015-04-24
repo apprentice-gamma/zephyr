@@ -3,7 +3,7 @@
         .module('zephyr')
         .factory('FlightFactory', FlightFactory);
 
-    function FlightFactory($http, $q) {
+    function FlightFactory($http, $q ) {
         var factory = {};
         factory.flight = "";
         factory.connectionTime = 0;
@@ -17,6 +17,7 @@
         factory.flightTimes = {};
         factory.flightsAtAirport = [];
         factory.airports = [];
+        factory.airport = "";
 
         factory.arrival = false;
         factory.suffix = "?callback=JSON_CALLBACK&appId=588e049b&appKey=f9e4c706444bfc87888b78ddb64f00c8&utc=false";
@@ -145,8 +146,11 @@
         }
 
         function getTSAWaitTime() {
+            console.log("BAAaaAAAAAAAAAAAAAAAAAAAAAAAAAA\n\n\n\n\n");
             var deferred = $q.defer();
-            $http.get('http://apps.tsa.dhs.gov/MyTSAWebService/GetWaitTimes.ashx?ap=DTW').success(function(data) {
+            var url = 'http://apps.tsa.dhs.gov/MyTSAWebService/GetWaitTimes.ashx?ap=' + factory.airport;
+            console.log("TSA, ", url);
+            $http.get(url).success(function(data) {
                 var avgWaitTime = 0;
                 //console.log('TSA WAIT TIMES:', data);
                 for(var x = 0; x < 10; x++) {
@@ -179,7 +183,7 @@
         function getAvgWaitTime() {
             var deferred = $q.defer();
 
-            $http.get('http://www.flyontime.us/airports/DTW.xml').success(function(data) {
+            $http.get('http://www.flyontime.us/airports/'+factory.airport+'.xml').success(function(data) {
                 //console.log(' WAIT TIMES:', data);
                 var shortIndex = data.indexOf('<short_delay>');
                 var shortEnd = data.indexOf('</short_delay>');

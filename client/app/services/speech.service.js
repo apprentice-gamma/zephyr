@@ -81,8 +81,8 @@
 
             if ((result.indexOf('zephyr time') != -1) && service.okZephyr) {
                 date =  FlightFactory.calculateCountdown(FlightFactory.connectionTime);
-                speak('Driving ETA to Airport is about ' + Math.round(DirectionFactory.drivingMinutes) + ' minutes');
                 speak('ETA of flight event is about ' + Math.round(date) + ' minutes');
+                speak('Driving ETA to Airport is about ' + Math.round(DirectionFactory.drivingMinutes) + ' minutes');
                 service.okZephyr = false;
             }
 
@@ -112,7 +112,9 @@
             if ((result.indexOf('airport') != -1) && service.okZephyr) {
                 startPosition = (result.indexOf('airport') + 6);
                 command = result.slice(startPosition, result.length);
-                service.controllers.vmEntry.airport = command;
+                //service.controllers.vmEntry.airport = command;
+                FlightFactory.airport = command;
+                console.log(command);
                 speak('Thank you, please confirm your airport');
                 service.okZephyr = false;
             }

@@ -1,6 +1,7 @@
 <div class="sideView">
 	<h1>ZEPHYR</h1>
-	<p ng-click="vmMain.openHelper('md')">Voice Commands</p>
+
+	<p>Info<br> <span ng-click="vmMain.openHelper('md')">Voice Commands</span> <br> Setttings</p>
 </div>
 	
 <div class="mainView">
@@ -8,7 +9,7 @@
 		<div class="form-group">
 			<h3>Airport Code</h3>
 			
-			<input type="text" class="form-control input-lg" id="inputFlight" placeholder="DTW" ng-model="vmFlightEntry.airport" typeahead="airport for airport in vmFlightEntry.airportCodes | filter:$viewValue | limitTo:8"/>
+			<input type="text" class="form-control input-lg" id="inputFlight" placeholder="DTW" ng-model="vmFlightEntry.FlightFactory.airport" typeahead="airport for airport in vmFlightEntry.airportCodes | filter:$viewValue | limitTo:8"/>
 
 			<p class="text-center trimBottom">-or-</p>
 			

@@ -1,12 +1,14 @@
 <div class="sideView">
 	<h1>ZEPHYR</h1>
-	<p ng-click="vmMain.openHelper('md')">Voice Commands</p>
+	<p>Info<br> <span ng-click="vmMain.openHelper('md')">Voice Commands</span> <br> Setttings</p>
 </div>
 	
 <div class="mainView" ng-controller="flightTracker as vmTracker">
 	<div class="col-md-6 column jumbo-fixed plane">
 		<div >
 			<img id="plane" src="../images/planeBottom.png" class="center-block"/>
+			<p class="bump-up" ng-if="vmTracker.FlightFactory.showWait">Departure in</p>
+			<p class="bump-up" ng-if="!vmTracker.FlightFactory.showWait">Arrival in</p>
 			<h1 class="text-center"><timer interval="60000" countdown="vmTracker.flightCountdown"><span ng-class="vmTracker.changeTimerClass()">{{countdown}}</span>min</timer></h1>
 			<p class="text-center delay-info" ng-if="vmTracker.FlightFactory.showWait"><u>Check-in Delay</u></p> 
 			<p class="text-center delay-info" ng-if="vmTracker.FlightFactory.showWait">{{vmTracker.FlightFactory.tsaTime}} (TSA) / {{vmTracker.FlightFactory.avgTime}} (AVG)</p>
@@ -15,6 +17,7 @@
 	<div class="col-md-6 column jumbo-fixed">
 		<div >
 			<img id="car" src="../images/carBottom.png" class="center-block"/>
+			<p class="bump-up">Driving time</p>
 			<h1 class="text-center"><timer interval="60000" countdown="vmTracker.carCountdown"><span class="timer">{{countdown}}</span>min</timer></h1>
 			<p class="text-center">to {{vmTracker.DirectionFactory.airport.fsCode}}</p>
 		</div>

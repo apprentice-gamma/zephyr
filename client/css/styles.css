@@ -158,6 +158,12 @@ p {
 .plane {
   border-right: 2px solid #fff;
 }
+.bump-up {
+  color: #fff;
+  text-align: center;
+  margin-top: -137px;
+  margin-bottom: 130px;
+}
 
 /*pager*/
 .pager {

@@ -25,10 +25,11 @@
 				flightSoon = true;
 			}
 
+			if(vm.flightCountdown > 0)
+             	SpeechService.speak('ETA of flight event is about ' + Math.round(vm.flightCountdown) + ' minutes');
 			if(vm.carCountdown > 0)
              	SpeechService.speak('Driving ETA to Airport is about ' + Math.round(vm.carCountdown) + ' minutes');
-            if(vm.flightCountdown > 0)
-             	SpeechService.speak('ETA of flight event is about ' + Math.round(vm.flightCountdown) + ' minutes');
+            
 		}
 
 		function changeTimerClass(){
