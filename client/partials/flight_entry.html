@@ -1,15 +1,18 @@
 <div class="sideView">
-	<h1>ZEPHYER</h1>
+	<h1>ZEPHYR</h1>
+	<p>This could be some helping text</p>
 </div>
 	
 <div class="mainView">
 	<form class="form-horizontal" role="form" ng-controller = "flightEntry as vmFlightEntry">
 		<div class="form-group">
-			<label for="inputFlight">Airport</label>
+			<h3>Airport Code</h3>
 			
 			<input type="text" class="form-control input-lg" id="inputFlight" ng-model="vmFlightEntry.airport"/>
+
+			<p class="text-center trimBottom">-or-</p>
 			
-			<label for="inputFlight">Flight No.</label>
+			<h3 class="trimTop">Flight No.</h3>
 			<input type="text" class="form-control input-lg" id="inputFlight" ng-model="vmFlightEntry.FlightFactory.flight"/>
 		</div>
 		<div class="buttons">
