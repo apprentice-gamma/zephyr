@@ -9,6 +9,7 @@
         factory.connectionTime = 0;
         factory.tsaTime = undefined;
         factory.avgTime = undefined;
+        factory.showWait = false;
 
         factory.flightComponents = {};
         factory.flightID = undefined;
@@ -30,7 +31,6 @@
         factory.getFlightByID = getFlightByID;
         factory.getTSAWaitTime = getTSAWaitTime;
         factory.getAvgWaitTime = getAvgWaitTime;
-        factory.calculateWaitTimes = calculateWaitTimes;
         factory.getConnectionTimeFromFlightList = getConnectionTimeFromFlightList;
         factory.calculateCountdown = calculateCountdown;
 
@@ -152,16 +152,6 @@
 
             return deferred.promise;
         }
-
-        function calculateWaitTimes() {
-            var deferred = $q.defer();
-            getTSAWaitTime().then(function() {
-                getAvgWaitTime().then(function() {
-
-                });
-            });
-        }
-
 
         function buildAirportURL(airport, direction) {
             var url = factory.airportBase;

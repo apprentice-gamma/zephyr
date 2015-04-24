@@ -16,7 +16,7 @@
 
 		if ($state.is('track')) {
 			setInterval(intervalFunction, 5 * minute);
-			showWait = (FlightFactory.tsaTime && FlightFactory.avgTime);
+			showWait = FlightFactory.showWait;
 		}
 
 		function intervalFunction(){
