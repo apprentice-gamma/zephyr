@@ -4,8 +4,8 @@
 </div>
 	
 <div class="mainView" ng-controller="flightSearchController as flightSearch">
-		<h3>Airport Code</h3>
-		<input type="text" class="form-control input-lg" id="inputAirline" ng-model="flightSearch.airline"/>
+		<h3>Airline</h3>
+		<input type="text" class="form-control input-lg" id="inputAirline" placeholder="Uninted" ng-model="flightSearch.airline"/>
 
 		<div class="list-group flightSelect" ng-hide="flightSearch.arrival">
 			<a ng-href="" ng-click="flightSearch.selectFlight(flight)"class="list-group-item" ng-repeat="flight in flightSearch.flightFactory.flightsAtAirport | limitTo:4:((flightSearch.currentPage - 1) * 4)">

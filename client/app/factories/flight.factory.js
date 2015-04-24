@@ -5,7 +5,7 @@
 
     function FlightFactory($http, $q) {
         var factory = {};
-        factory.flight = "dl2024";
+        factory.flight = "";
         factory.today = "2015/4/22";
 
         factory.flightComponents = {};

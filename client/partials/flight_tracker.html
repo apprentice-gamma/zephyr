@@ -1,12 +1,17 @@
-<div class="row clearfix" ng-controller="flightTracker as vmTimer">
+<div class="sideView">
+	<h1>ZEPHYR</h1>
+	<p>This could be some helping text</p>
+</div>
+	
+<div class="mainView" ng-controller="flightTracker as vmTimer">
 	<div class="col-md-6 column jumbo-fixed">
-		<div class="jumbotron well">
+		<div >
 			<img src="../images/plane.jpg" class="img-responsive center-block"/>
 			<h1 class="text-center"><timer interval="60000" countdown="vmTimer.flightCountdown">{{countdown}}m</timer></h1>
 		</div>
 	</div>
 	<div class="col-md-6 column jumbo-fixed">
-		<div class="jumbotron well">
+		<div >
 			<img src="../images/car.jpg" class="img-responsive center-block"/>
 			<h1 class="text-center"><timer interval="60000" countdown="vmTimer.carCountdown">{{countdown}}m</timer></h1>
 		</div>
