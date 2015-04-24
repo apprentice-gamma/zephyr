@@ -19,6 +19,7 @@
 
 		function intervalFunction(){
 			console.log("I'M AN INTERVAL");
+			FlightFactory.getFlightByID();
 		}
 
 	}

@@ -46,10 +46,12 @@
                 success(function(data, status, headers, config) {
                     deferred.resolve(data);
                     console.log(data);
+                    factory.flightStatus = data.flightStatus;
+                    factory.flightTimes = data.flightStatus.operationalTimes;
                     factory.connectionTime = getConnectionTimeFromFlightData(direction);
                 })
                 .error(function() {
-                    console.log('ERROR RETRIEVING FLIGHT JSONP DATA');
+                    console.log('ERROR RETRIEVING FLIGHT JSONP DATA FROM ID');
                     deferred.reject('ERROR DEFERRING');
                 });
             }
