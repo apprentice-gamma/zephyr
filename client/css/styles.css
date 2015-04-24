@@ -200,3 +200,8 @@ p {
   cursor: not-allowed;
   background-color: #fff;
 }
+
+.delay-info {
+  margin-top: -10px;
+  font-size: 19px;
+}

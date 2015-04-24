@@ -8,7 +8,8 @@
 		<div >
 			<img id="plane" src="../images/planeBottom.png" class="center-block"/>
 			<h1 class="text-center"><timer interval="60000" countdown="vmTracker.flightCountdown"><span ng-class="vmTracker.changeTimerClass()">{{countdown}}</span>min</timer></h1>
-			<p class="text-center" ng-if="vmTracker.FlightFactory.arrival">Wait Time: {{vmTracker.FlightFactory.tsaTime}} (tsa) | {{vmTracker.FlightFactory.avgTime}} (avg)</p>
+			<p class="text-center delay-info" ng-if="vmTracker.FlightFactory.showWait"><u>Check-in Delay</u></p> 
+			<p class="text-center delay-info" ng-if="vmTracker.FlightFactory.showWait">{{vmTracker.FlightFactory.tsaTime}} (TSA) / {{vmTracker.FlightFactory.avgTime}} (AVG)</p>
 		</div>
 	</div>
 	<div class="col-md-6 column jumbo-fixed">

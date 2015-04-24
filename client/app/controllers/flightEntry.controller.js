@@ -10,10 +10,10 @@
         vm.listenCommand = listenCommand;
         vm.airport = "";  
 
-        if (!SpeechService.listening) {
-            SpeechService.listening = true;
-            SpeechService.listenForCommands();
-        }
+        // if (!SpeechService.listening) {
+        //     SpeechService.listening = true;
+        //     SpeechService.listenForCommands();
+        // }
 
         function trackFlight(direction, controller) {
             if (FlightFactory.flight) {
