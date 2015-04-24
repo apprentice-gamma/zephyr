@@ -1,26 +1,23 @@
-<div class="row clearfix">
-	<div class="col-md-12 column">
-		ANGULAR IS RUNNING? {{1+1}}
-	</div>
-	<div class="col-md-12 column">
-		<form class="form-horizontal" role="form" ng-controller = "flightEntry as vmFlightEntry">
-			<div class="form-group">
-				<label for="inputFlight" class="col-sm-2 control-label">Airport</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control input-lg" id="inputFlight" ng-model="vmFlightEntry.airport"/>
-				</div>
-				<label for="inputFlight" class="col-sm-2 control-label">Flight No.</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control input-lg" id="inputFlight" ng-model="vmFlightEntry.FlightFactory.flight"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-success btn-lg" ng-click="vmFlightEntry.trackFlight('dep', vmMain)">Departure</button> 
-					<button type="submit" class="btn btn-success btn-lg" ng-click="vmFlightEntry.trackFlight('arr', vmMain)">Arrival</button>
-					<h5 class="text-center"><a ui-sref="search">Don't know your Flight?</a></h5>
-				</div>
-			</div>
-		</form>
-	</div>
+<div class="sideView">
+	<h1>ZEPHYR</h1>
+	<p>This could be some helping text</p>
+</div>
+	
+<div class="mainView">
+	<form class="form-horizontal" role="form" ng-controller = "flightEntry as vmFlightEntry">
+		<div class="form-group">
+			<h3>Airport Code</h3>
+			
+			<input type="text" class="form-control input-lg" id="inputFlight" placeholder="LAX" ng-model="vmFlightEntry.airport"/>
+
+			<p class="text-center trimBottom">-or-</p>
+			
+			<h3 class="trimTop">Flight No.</h3>
+			<input type="text" class="form-control input-lg" id="inputFlight" placeholder="DL 2024" ng-model="vmFlightEntry.FlightFactory.flight"/>
+		</div>
+		<div class="buttons">
+			<button class="landingBtnFirst" ng-click="vmFlightEntry.trackFlight('dep', vmMain)">Departure</button> 
+			<button class="landingBtn" ng-click="vmFlightEntry.trackFlight('arr', vmMain)">Arrival</button>
+		</div>
+	</form>
 </div>

@@ -5,7 +5,7 @@
 
     function FlightFactory($http, $q) {
         var factory = {};
-        factory.flight = "dl2024";
+        factory.flight = "";
         factory.today = "2015/4/22";
 
         factory.flightComponents = {};
@@ -80,10 +80,6 @@
             return deferred.promise;
         }
 
-        function dataFromFlightList(direction, index) {
-            factory.connectionTime = getConnectionTimeFromFlightList(direction, index);
-
-        }
 
 
         function buildAirport(airport, direction) {
