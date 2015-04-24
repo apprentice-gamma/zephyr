@@ -7,9 +7,9 @@
     function FlightFactory($http, $q) {
         var factory = {};
         factory.flight = "dl2024";
-        factory.today = "2015/4/22";
 
         factory.flightComponents = {};
+        factory.flightID = undefined;
         factory.flightStatus = {};
         factory.flightTimes = {};
 
@@ -66,6 +66,7 @@
             success(function(data, status, headers, config) {
                 deferred.resolve(data);
                 factory.flightStatus = data.flightStatuses[0];
+                factory.flightID = data.flightStatuses[0].flightId;
                 factory.flightTimes = data.flightStatuses[0].operationalTimes;
                 factory.connectionTime = getConnectionTimeFromFlightData(direction);
             })
@@ -81,7 +82,6 @@
             factory.connectionTime = getConnectionTimeFromFlightList(direction, index);
 
         }
-
 
         function buildAirport(airport, direction) {
             var url = factory.airportBase;

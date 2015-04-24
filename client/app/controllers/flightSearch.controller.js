@@ -15,6 +15,7 @@
 		vm.selectFlight = selectFlight;
 
 		function selectFlight(flight) {
+			FlightFactory.flightID = flight.flightID;
 			FlightFactory.getConnectionTimeFromFlightList(flight);
 			$state.go('track');	
 		}
