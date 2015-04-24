@@ -135,6 +135,9 @@ p {
 .timer {
   font-size: 70px;
 }
+.plane {
+  border-right: 2px solid #fff;
+}
 
 /*pager*/
 .pager {

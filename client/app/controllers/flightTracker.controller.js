@@ -12,6 +12,7 @@
 		vm.FlightFactory = FlightFactory;
 		vm.ActivityFactory = ActivityFactory;
 		vm.carCountdown = FlightFactory.calculateCountdown(DirectionFactory.drivingETA);
+		vm.DirectionFactory = DirectionFactory;
 		vm.flightCountdown = FlightFactory.calculateCountdown(FlightFactory.connectionTime);		
 
 		if ($state.is('track')) {
